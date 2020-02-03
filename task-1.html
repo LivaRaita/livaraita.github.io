@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Task 1</title>
+  </head>
+  <body>
+    <table border="1px" width="100%" style="border-collapse: collapse">
+      <thead>
+        <tr>
+          <th rowspan="3" colspan="2">Day</th>
+          <th colspan="4">Weekly schedule</th>
+        </tr>
+        <tr>
+          <th colspan="2">Time table</th>
+          <th colspan="2" rowspan="2">Topic</th>
+        </tr>
+        <tr>
+          <th>Begin</th>
+          <th>End</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="2" rowspan="2">Monday</td>
+          <td rowspan="2">8AM</td>
+          <td rowspan="2">5PM</td>
+          <td>Introduction</td>
+        </tr>
+        <tr>
+          <td>Setup</td>
+        </tr>
+        <tr>
+          <td colspan="2" rowspan="3">Tuesday</td>
+          <td>8AM</td>
+          <td>5PM</td>
+          <td>Git basics</td>
+        </tr>
+        <tr>
+          <td>11AM</td>
+          <td>2PM</td>
+          <td>HTML tags</td>
+        </tr>
+        <tr>
+          <td>2PM</td>
+          <td>5PM</td>
+          <td>HTML atributes</td>
+        </tr>
+        <tr>
+          <td colspan="2">Wednesday</td>
+          <td>8PM</td>
+          <td>12PM</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <form>
+      <div>
+        <label for="first-name">First name:</label>
+        <input id="first-name" type="text" />
+      </div>
+      <div>
+        <label for="last-name">Last name:</label>
+        <input id="last-name" type="text" />
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input id="email" type="email" />
+      </div>
+      <div>
+        <label for="age">Age (in full years):</label>
+        <input id="age" type="number" />
+      </div>
+      <div>
+        <label for="country">Country:</label>
+        <select id="country" name="country">
+          <option value=""></option>
+          <option value="LV">Latvia</option>
+          <option value="LT">Lithuania</option>
+          <option value="GER">Germany</option>
+          <option value="USA">USA</option>
+        </select>
+      </div>
+      <div>
+        <label for="description">Description:</label>
+        <textarea id="description" style="width:200px; height:50px;"></textarea>
+      </div>
+      <div>
+        <label for="radio">I am enjoying this:</label>
+        <label for="yes">Yes</label>
+        <input id="yes" type="radio" name="radio" value="yes" />
+        <label for="no">No</label>
+        <input id="no" type="radio" name="radio" value="no" />
+      </div>
+      <button type="submit">Save</button>
+    </form>
+
+    <div>
+      <a href="/src/html-lessons/lesson-notes.html">Navigate to inner link</a>
+    </div>
+    <div>
+      <a href="https://css-tricks.com/use-target_blank" target="_blank"
+        >Navigate to outer link in a new tab</a
+      >
+    </div>
+    <div>
+      <ul>
+        <li>
+          Not ordered list 1st item
+          <ol>
+            <li>Ordered list 1st item</li>
+            <li>Ordered list 2nd item</li>
+          </ol>
+        </li>
+        <li>
+          Not ordered list 2nd item
+          <ul>
+            <li>Don't forget to push to github</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <img alt="Image that can't be loaded" />
+    <img
+      src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+      width="250px"
+    />
+  </body>
+</html>
