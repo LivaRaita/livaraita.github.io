@@ -1,4 +1,29 @@
 h1 {
+  color: orangered;
+}
+
+div p {
+  color: orchid;
+}
+
+.big.orange {
+  background-color: orange;
+  padding: 200px;
+}
+
+#parent-div > p {
+  background-color: plum;
+}
+
+#all-child-elements * {
+  background-color: blueviolet;
+}
+
+input[type="textarea"] {
+  border: 2px solid red;
+}
+
+/* h1 {
   display: block;
 }
 
@@ -45,4 +70,4 @@ h3 {
 
 input:checked[type="checkbox"] {
   display: none;
-}
+} */
