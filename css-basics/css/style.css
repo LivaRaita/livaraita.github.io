@@ -1,0 +1,48 @@
+h1 {
+  display: block;
+}
+
+h2 {
+  display: inline-block;
+}
+
+h2.cool-h2 {
+  font-size: 2em;
+  background-color: peru;
+}
+
+.cool-h2 {
+  font-size: 2em;
+  background-color: bisque;
+}
+
+h3 {
+  display: inline;
+}
+
+.bold {
+  font-weight: 800;
+}
+
+#p-tag-pink {
+  text-align: end;
+  color: pink;
+  font-weight: 800;
+  background-color: purple;
+}
+
+.cool-h2 div {
+  background-color: royalblue;
+}
+
+.all-paragraphs * {
+  background-color: sandybrown;
+}
+
+.first-level > p {
+  background-color: seagreen;
+}
+
+input:checked[type="checkbox"] {
+  display: none;
+}
