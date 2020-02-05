@@ -23,6 +23,26 @@ input[type="textarea"] {
   border: 2px solid red;
 }
 
+.the-same {
+  font-size: 48px;
+  font-weight: 700;
+  color: crimson;
+}
+
+#all-p p:not(.not-this) {
+  color: green;
+}
+
+.link:hover {
+  color: green;
+}
+
+h4::first-letter {
+  font-size: 4rem;
+}
+
+/* Other lesson materials */
+
 /* h1 {
   display: block;
 }
