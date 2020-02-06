@@ -1,0 +1,30 @@
+body {
+  height: 2000px;
+}
+
+h2 {
+  z-index: 2;
+  background: blanchedalmond;
+}
+
+button {
+  padding: 50px 40px 30px 20px;
+  border: 2px dotted;
+  border-color: purple green blue black;
+  border-width: 5px;
+  margin: 50px;
+  position: sticky;
+  top: 100px;
+  z-index: -1;
+}
+
+.btn-block {
+  float: right;
+}
+
+.container {
+  width: 200px;
+  height: 200px;
+  border: 2px solid blue;
+  overflow: auto;
+}
