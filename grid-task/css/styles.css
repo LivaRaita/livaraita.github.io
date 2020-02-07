@@ -1,0 +1,50 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 20% 10% 10% 20% 20% 10% 10%;
+  grid-template-rows: repeat(4, calc(100% / 4));
+  width: 500px;
+  height: 500px;
+}
+
+.red {
+  background: red;
+  grid-area: 1 / 1 / 5 / 3;
+}
+
+.black {
+  background: black;
+  grid-area: 1 / 2 / 3 / 4;
+}
+
+.green {
+  background: green;
+  grid-area: 1 / 4 / 2 / 8;
+}
+
+.red-2 {
+  background: red;
+  grid-area: 2 / 4 / 3 / 6;
+}
+
+.blue-1 {
+  background: midnightblue;
+  grid-area: 4 / 2 / 5 / 7;
+}
+
+.blue-2 {
+  background: navy;
+  grid-area: 3 / 3 / 4 / 6;
+}
+
+.brown {
+  background: brown;
+  grid-area: 3 / 7 / 5 / 8;
+}
