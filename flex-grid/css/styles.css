@@ -30,6 +30,7 @@ div > .pink {
 @media screen and (max-width: 720px) {
   .wrapper {
     flex-direction: column;
+    height: 100vh;
   }
 }
 
