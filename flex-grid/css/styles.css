@@ -1,3 +1,5 @@
+/* Flex styles */
+
 .wrapper {
   display: flex;
   flex-direction: row;
@@ -5,7 +7,7 @@
   border: 1px solid black;
   justify-content: flex-start;
   flex-wrap: wrap;
-  height: 80vh;
+  /* height: 50vh; */
 }
 
 .wrapper > div {
@@ -13,8 +15,39 @@
   width: 150px;
   background: red;
   border: 1px solid black;
+  order: 3;
+}
+
+.wrapper > div:nth-child(3) {
+  background: black;
+  order: 1;
 }
 
 div > .pink {
   background: pink;
+}
+
+@media screen and (max-width: 720px) {
+  .wrapper {
+    flex-direction: column;
+  }
+}
+
+/* Grid styles */
+
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 150px);
+  grid-template-rows: 100px 150px 200px 300px;
+  grid-gap: 16px;
+  background: green;
+  border: 1px solid black;
+  height: 50vh;
+}
+
+.grid-wrapper > div {
+  height: 100px;
+  width: 100px;
+  background: red;
+  border: 1px solid black;
 }
