@@ -39,7 +39,7 @@ a {
   /* flex-direction: column; */
   top: 0;
   align-items: right;
-  justify-content: right;
+  justify-content: flex-end;
   color: #263238;
   padding-right: 40px;
   /* margin-right: 100px; */
@@ -54,11 +54,6 @@ a {
   align-items: center;
   justify-content: right;
   height: 72px;
-  /* margin-left: 40px; */
-  color: #263238;
-}
-
-.menu a:nth-last-of-type(1) {
   color: #e44231;
 }
 
@@ -66,11 +61,11 @@ a {
   position: absolute;
   right: 24px;
   display: block;
-  /* flex-direction: column; */
   margin: 0;
   width: 200px;
   margin-top: 72px;
-  margin-right: 32px;
+  /* margin-right: 24px; */
+  padding: 8px 24px 8px 24px;
   text-align: right;
   background: #ffffff;
   border: 1px solid #e5e5e5;
@@ -236,7 +231,11 @@ div.scrollable {
   overflow: auto;
 }
 
-fas.fa-trash-alt {
+.fa-external-link-alt {
+  margin-left: 8px;
+}
+
+.fa-trash-alt {
   font-size: 16px;
   color: #e44231;
 }
