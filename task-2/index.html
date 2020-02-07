@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Task 2</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- fixed navigation bar at the top with extra buttons
+
+some type of logo that leads to homepage
+navigation element hover opens child menu
+outer link(s)
+inner link(s) -->
+
+    <div class="navbar">
+      <a id="logo" href="#"><i class="fas fa-store"></i></a>
+      <div class="menu"><a>Menu</a>
+        <ul hidden>
+          <li><a href="#">Option 1</a></li>
+          <li><a href="#">Option 2</a></li>
+          <li><a href="#">Option 3</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Product registration form
+
+Form heading
+Name (text input), required
+Category (select), required
+Price (number), required
+In stock amount (number)
+description
+can be sold (checkbox)
+Submit, clear button -->
+    <div class="form-container">
+        <h1>Product registration form</h1>
+        <div class="input-groups">
+        <form>
+            <div class="form-items">
+            <label for="name">Name (required)</label>
+            <input id="name" type="text" required />
+            </div>
+
+            <div class="form-items">
+            <label for="category">Category (required)</label>
+            <select name="category" id="category" required>
+                <option disabled>Select a category</option>
+                <option value="product-1">Clothing</option>
+                <option value="product-2">Home, Garden, pets & DIY </option>
+                <option value="product-3">Films, TV, Music & Games</option>
+                <option value="product-4">Electronics & Computers</option>
+                <option value="product-5">Sports & Outdoors</option>
+            </select>
+            </div>
+
+            <div class="form-items">
+            <label for="price">Price</label>
+            <input id="price" type="number" />
+            </div>
+
+            <div class="form-items">
+            <label for="stock">Products in stock</label>
+            <input id="stock" type="number" />
+            </div>
+
+            <div class="form-items">
+            <label for="description">Description</label>
+            <textarea id="description"></textarea>
+            </div>
+
+            <div class="checkbox-group">
+            <label for="sell">Can be sold</label>
+            <input id="sell" type="checkbox" />
+            </div>
+
+            <div class="form-items">
+            <input class="btn-confirm" type="submit" />
+            <input class="btn-decline" type="reset" />
+            </div>
+        </form>
+        </div>
+    </div>
+
+    <!-- Table based on form data
+
+Styled for better looks
+ID colum
+Action (edit, delete) column
+A popup that that asks us for delete confirmation -->
+
+    <div class="table-container">
+      <h2>Registered products</h2>
+
+      <table>
+        <thead>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>In stock</td>
+          <th>Description</th>
+          <th>For sale</th>
+          <th></th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>00001</td>
+                <td>Echo Dot (3rd Gen) - Smart speaker with Alexa - Sandstone Fabric</td>
+                <td>Electronics & Computers</td>
+                <td>£29.99</td>
+                <td>1000</td>
+                <td><div class="scrollable">Our most popular smart speaker: now with a fabric design and improved speaker for richer and louder sound.
+                    Voice control your music: stream songs from Amazon Music, Apple Music, Spotify, TuneIn and others. You can also listen to audiobooks from Audible.
+                    Bigger, better sound: pair with a second Echo Dot for rich, stereo sound. Fill your home with music with compatible Echo devices in different rooms.
+                    Ready to help: ask Alexa to play music, answer questions, read the news, check the weather, set alarms, control compatible smart home devices and more.
+                    Connect with others: call almost anyone hands free including UK mobile and residential numbers (from UK only), other Echo devices, Alexa app and Skype. Link your Vodafone account to make and receive mobile calls. Instantly drop in on other rooms in your home or make an announcement to every room with a compatible Echo device.
+                    Alexa has skills: with tens of thousands of skills, Alexa is always getting smarter and adding new skills like tracking fitness, playing games and more.
+                    Voice control your smart home: turn on lights, adjust thermostats, lock doors and more, with compatible connected devices.
+                    Designed to protect your privacy: built with multiple layers of privacy protection and control, including a Microphone Off button that electronically disconnects the microphones.</div></td>
+                <td>Yes</td>
+                <td><a class="delete" href="#popup1"><i class="fas fa-trash-alt"></i></a></td>
+            </tr>
+            <tr>
+                <td>00001</td>
+                <td>Echo Dot (3rd Gen) - Smart speaker with Alexa - Sandstone Fabric</td>
+                <td>Electronics & Computers</td>
+                <td>£29.99</td>
+                <td>1000</td>
+                <td><div class="scrollable">Our most popular smart speaker: now with a fabric design and improved speaker for richer and louder sound.
+                    Voice control your music: stream songs from Amazon Music, Apple Music, Spotify, TuneIn and others. You can also listen to audiobooks from Audible.
+                    Bigger, better sound: pair with a second Echo Dot for rich, stereo sound. Fill your home with music with compatible Echo devices in different rooms.
+                    Ready to help: ask Alexa to play music, answer questions, read the news, check the weather, set alarms, control compatible smart home devices and more.
+                    Connect with others: call almost anyone hands free including UK mobile and residential numbers (from UK only), other Echo devices, Alexa app and Skype. Link your Vodafone account to make and receive mobile calls. Instantly drop in on other rooms in your home or make an announcement to every room with a compatible Echo device.
+                    Alexa has skills: with tens of thousands of skills, Alexa is always getting smarter and adding new skills like tracking fitness, playing games and more.
+                    Voice control your smart home: turn on lights, adjust thermostats, lock doors and more, with compatible connected devices.
+                    Designed to protect your privacy: built with multiple layers of privacy protection and control, including a Microphone Off button that electronically disconnects the microphones.</div></td>
+                <td>Yes</td>
+                <td><a class="delete" href="#popup1"><i class="fas fa-trash-alt"></i></a></td>
+            </tr>
+            <tr>
+                <td>00001</td>
+                <td>Echo Dot (3rd Gen) - Smart speaker with Alexa - Sandstone Fabric</td>
+                <td>Electronics & Computers</td>
+                <td>£29.99</td>
+                <td>1000</td>
+                <td><div class="scrollable">Our most popular smart speaker: now with a fabric design and improved speaker for richer and louder sound.
+                    Voice control your music: stream songs from Amazon Music, Apple Music, Spotify, TuneIn and others. You can also listen to audiobooks from Audible.
+                    Bigger, better sound: pair with a second Echo Dot for rich, stereo sound. Fill your home with music with compatible Echo devices in different rooms.
+                    Ready to help: ask Alexa to play music, answer questions, read the news, check the weather, set alarms, control compatible smart home devices and more.
+                    Connect with others: call almost anyone hands free including UK mobile and residential numbers (from UK only), other Echo devices, Alexa app and Skype. Link your Vodafone account to make and receive mobile calls. Instantly drop in on other rooms in your home or make an announcement to every room with a compatible Echo device.
+                    Alexa has skills: with tens of thousands of skills, Alexa is always getting smarter and adding new skills like tracking fitness, playing games and more.
+                    Voice control your smart home: turn on lights, adjust thermostats, lock doors and more, with compatible connected devices.
+                    Designed to protect your privacy: built with multiple layers of privacy protection and control, including a Microphone Off button that electronically disconnects the microphones.</div></td>
+                <td>Yes</td>
+                <td><a class="delete" href="#popup1"><i class="fas fa-trash-alt"></i></a></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="popup1" class="overlay">
+        <div class="popup">
+            <h2>Delete a product</h2>
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+                The item will be deleted permanently, this action can't be undone.
+            </div>
+            <button class="btn-confirm"><a href="#">Delete</a></button>
+            <button class="btn-decline"><a href="#">Cancel</a></button>
+        </div>
+    </div>
+  </body>
+</html>
