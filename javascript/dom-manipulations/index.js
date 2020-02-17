@@ -39,5 +39,11 @@ window.open("", "", "height: 300, width: 300");
 // // Write data to it
 
 // // Add an event listener that triggers window close
+window.close();
 
 // Create the HTML (css if needed) and add three different event listeners to created HTML
+document
+  .getElementsByTagName("li")
+  .addEventListener("mouseover", function(event) {
+    event.target.style.color = "purple";
+  });
