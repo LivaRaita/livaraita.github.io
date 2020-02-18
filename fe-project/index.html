@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>FE Project</title>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+  crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <!-- fixed navigation bar at the top with extra buttons
+
+some type of logo that leads to homepage
+navigation element hover opens child menu
+outer link(s)
+inner link(s) -->
+
+    <div class="navbar">
+      <a id="logo" href="#"><i class="fas fa-store"></i></a>
+      <!-- <div class="menu"><a>Menu</a>
+        <ul hidden>
+          <li><a href="#registered-products">Registered products</a></li>
+          <li><a href="https://google.com" target="_blank">Google <i class="fas fa-external-link-alt"></i></a></li>
+          <li><a href="#">Option 3</a></li>
+        </ul>
+      </div> -->
+    </div>
+
+    <div class="container">
+        <div class="toolbar">
+            <button id="new-product" class="btn-confirm"><a href="#add-new-product"><span><i class="fas fa-plus"></i></span>New Product</a></button>
+        </div>
+
+    <!-- Product registration form
+
+Form heading
+Name (text input), required
+Category (select), required
+Price (number), required
+In stock amount (number)
+description
+can be sold (checkbox)
+Submit, clear button -->
+    
+
+    <!-- Table based on form data
+
+Styled for better looks
+ID colum
+Action (edit, delete) column
+A popup that that asks us for delete confirmation -->
+
+    <div class="table-container">
+      <h2 id="registered-products">My products</h2>
+
+      <table>
+        <thead>
+          <!-- <th>ID</th> -->
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>In stock</td>
+          <th>Description</th>
+          <th>For sale</th>
+          <th>Store</th>
+          <th>Delete</th>
+        </thead>
+        <tbody id="product-list">
+        </tbody>
+      </table>
+    </div>
+</div>
+
+    <div id="delete-item" class="overlay">
+        <div class="popup">
+            <h2>Delete a product</h2>
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+                The item will be deleted permanently, this action can't be undone.
+            </div>
+            <button class="btn-confirm"><a href="#">Delete</a></button>
+            <button class="btn-decline"><a href="#">Cancel</a></button>
+        </div>
+    </div>
+
+    <div id="add-new-product" class="overlay-full-screen">
+        <div class="popup2">
+            <h2>Add new product</h2>
+            <a class="close" href="#">&times;</a>
+            <div class="form-container">
+                <!-- <h1>Product registration form</h1> -->
+                <div class="input-groups">
+                <form>
+                    <div class="form-items">
+                    <label for="name">Name (required)</label>
+                    <input id="name" type="text" required />
+                    </div>
+        
+                    <div class="form-items">
+                    <label for="category">Category (required)</label>
+                    <select name="category" id="category" required>
+                        <option disabled>Select a category</option>
+                        <option value="Clothing">Clothing</option>
+                        <option value="Home, Garden, pets & DIY ">Home, Garden, pets & DIY </option>
+                        <option value="Films, TV, Music & Games">Films, TV, Music & Games</option>
+                        <option value="Electronics & Computers">Electronics & Computers</option>
+                        <option value="Sports & Outdoors">Sports & Outdoors</option>
+                    </select>
+                    </div>
+        
+                    <div class="form-items">
+                    <label for="price">Price</label>
+                    <input id="price" type="number" />
+                    </div>
+        
+                    <div class="form-items">
+                    <label for="stock">Products in stock</label>
+                    <input id="stock" type="number" />
+                    </div>
+        
+                    <div class="form-items">
+                    <label for="description">Description</label>
+                    <textarea id="description"></textarea>
+                    </div>
+        
+                    <div class="checkbox-group">
+                    <label for="sell">Can be sold</label>
+                    <input id="sell" type="checkbox" />
+                    </div>
+
+                    <div id="storeDiv" class="form-items">
+                        <label for="store">Select a store (required)</label>
+                        <select name="store" id="store" required>
+                            <option disabled>Select a store</option>
+                            <option value="all-stores">All stores</option>
+                            <option value="store-2">Premium Store</option>
+                            <option value="store-3">Store&Store</option>
+                        </select>
+                    </div>
+        
+                    <div class="form-items">
+                    <button id="submit-product" class="btn-confirm" type="submit"><a href="#success">Submit</a></button>
+                    <input class="btn-decline" type="reset" />
+                    </div>
+
+                    
+                </form>
+                </div>
+            </div>
+            <!-- <div class="content">
+                The item will be deleted permanently, this action can't be undone.
+            </div> -->
+            <!-- <button class="btn-confirm"><a href="#">Submit Product</a></button>
+            <button class="btn-decline"><a href="#">Cancel</a></button> -->
+        </div>
+    </div>
+
+    <div id="success" class="overlay">
+        <div class="popup">
+            <h2>New product added</h2>
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+                <p></p>
+            </div>
+            <button class="btn-confirm"><a href="#">Got it!</a></button>
+        </div>
+    </div>
+
+    
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
