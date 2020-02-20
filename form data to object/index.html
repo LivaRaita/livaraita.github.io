@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+  crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <form>
+      <div class="form-items">
+        <label for="name">Name (required)</label>
+        <input id="name" type="text" required />
+      </div>
+
+      <div class="form-items">
+        <label for="category">Category (required)</label>
+        <select name="category" id="category" required>
+          <option disabled>Select a category</option>
+          <option value="Clothing">Clothing</option>
+          <option value="Home, Garden, pets & DIY "
+            >Home, Garden, pets & DIY
+          </option>
+          <option value="Films, TV, Music & Games"
+            >Films, TV, Music & Games</option
+          >
+          <option value="Electronics & Computers"
+            >Electronics & Computers</option
+          >
+          <option value="Sports & Outdoors">Sports & Outdoors</option>
+        </select>
+      </div>
+
+      <div class="form-items">
+        <label for="price">Price</label>
+        <input id="price" type="number" />
+      </div>
+
+      <div class="form-items">
+        <label for="stock">Products in stock</label>
+        <input id="stock" type="number" />
+      </div>
+
+      <div class="form-items">
+        <label for="description">Description</label>
+        <textarea id="description"></textarea>
+      </div>
+
+      <div class="checkbox-group">
+        <label for="sell">Can be sold</label>
+        <input id="sell" type="checkbox" />
+      </div>
+
+      <div id="storeDiv" class="form-items">
+        <label for="store">Select a store (required)</label>
+        <select name="store" id="store" required>
+          <option disabled>Select a store</option>
+          <option value="all-stores">All stores</option>
+          <option value="store-2">Premium Store</option>
+          <option value="store-3">Store&Store</option>
+        </select>
+      </div>
+
+      <div class="form-items">
+        <button id="submit-product" class="btn-confirm" type="submit">
+          Submit Product
+        </button>
+        <button id="btn-reset" class="btn-decline" type="reset">
+          Reset
+        </button>
+      </div>
+    </form>
+
+    <table>
+        <thead>
+          <!-- <th>ID</th> -->
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>In stock</td>
+          <th>Description</th>
+          <th>For sale</th>
+          <th>Store</th>
+          <th>Delete</th>
+        </thead>
+        <tbody id="product-list">
+        </tbody>
+      </table>
+
+    <script>
+      let products = [];
+
+      const addProduct = ev => {
+        ev.preventDefault();
+        let product = {
+          name: document.getElementById("name").value,
+          category: document.getElementById("category").value,
+          price: document.getElementById("price").value,
+          stock: document.getElementById("stock").value,
+          description: document.getElementById("description").value,
+          sell: document.getElementById("sell").value,
+          store: document.getElementById("store").value
+        };
+        products.push(product);
+        document.forms[0].reset();
+
+        localStorage.setItem("ProductList", JSON.stringify(products));
+      };
+      document.addEventListener("DOMContentLoaded", () => {
+        document
+          .getElementById("submit-product")
+          .addEventListener("click", addProduct);
+      });
+
+      //TODO: now, try to retrieve the data and represent them in the table
+
+      let productList = JSON.parse(window.localStorage.getItem("ProductList"));
+
+    //   $(document).ready(function(){
+    //     //   let products = JSON.parse(localStorage.getItem("products"));
+    //       $.getJSON("ProductList.json", function(data){
+    //           let productData = "";
+    //           $.each(data, function(key, value){
+    //               productData += "<tr>";
+    //               productData += "<td>"+value.name+"</td>";
+    //               productData += "<td>"+value.category+"</td>";
+    //               productData += "<td>"+value.price+"</td>";
+    //               productData += "<td>"+value.stock+"</td>";
+    //               productData += "<td>"+value.description+"</td>";
+    //               productData += "<td>"+value.sell+"</td>";
+    //               productData += "<td>"+value.store+"</td>";
+                
+    //           })
+    //       })
+    //   })
+
+
+    </script>
+  </body>
+</html>

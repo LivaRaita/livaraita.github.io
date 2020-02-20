@@ -1,31 +1,83 @@
-//TODO: save data to local storage
+// DONE: Create and save an object from the values provided in the form
 
-$(window).on("unload", function() {
-  saveSettings();
-  loadSettings();
+let products = [];
+
+const addProduct = ev => {
+  ev.preventDefault();
+  let product = {
+    name: document.getElementById("name").value,
+    category: document.getElementById("category").value,
+    price: document.getElementById("price").value,
+    stock: document.getElementById("stock").value,
+    description: document.getElementById("description").value,
+    sell: document.getElementById("sell").value,
+    store: document.getElementById("store").value
+  };
+  products.push(product);
+  document.forms[0].reset();
+
+  localStorage.setItem("ProductList", JSON.stringify(products));
+};
+document.addEventListener("DOMContentLoaded", () => {
+  document
+    .getElementById("submit-product")
+    .addEventListener("click", addProduct);
 });
 
-function loadSettings() {
-  $("#name").val(localStorage.name);
-  $("#category").val(localStorage.category);
-  $("#price").val(localStorage.price);
-  $("#stock").val(localStorage.stock);
-  $("#description").val(localStorage.description);
-  $("#sell").val(localStorage.sell);
-  $("#store").val(localStorage.store);
-  //   "<i class='fas fa-trash-alt'></i>"(localStorage.deleteItem);
-}
+//TAKE THE VALUES FROM THE JSON FILE AND REPRESENT IN THE TABLE
 
-function saveSettings() {
-  localStorage.name = $("#name").val();
-  localStorage.category = $("#category").val();
-  localStorage.price = $("#price").val();
-  localStorage.stock = $("#stock").val();
-  localStorage.description = $("#description").val();
-  localStorage.sell = $("#sell").val();
-  localStorage.store = $("#store").val();
-  //   localStorage.deleteItem = "<i class='fas fa-trash-alt'></i>";
-}
+// const products = [
+//   {
+//     name: "Movie",
+//     category: "Films, TV, Music & Games",
+//     price: 25,
+//     in_stock: 25,
+//     description: "Great product. Highly recommended for movie nights.",
+//     sell: true,
+//     store: "Premium Store"
+//   },
+//   {
+//     name: "Popcorn",
+//     category: "Food",
+//     price: 25,
+//     in_stock: 25,
+//     description: "Great product. Highly recommended for movie nights.",
+//     sell: true,
+//     store: "Premium Store"
+//   }
+// ];
+
+// let product = {
+//   name: "Movie",
+//   category: "Films, TV, Music & Games",
+//   price: 25,
+//   in_stock: 25,
+//   description: "Great product. Highly recommended for movie nights.",
+//   sell: true,
+//   store: "Premium Store"
+// };
+
+// For adding objects to the array
+
+// products.push(product);
+
+// // <---- This adds the data to the table ---->
+
+// var k = "<tbody>";
+// for (i = 0; i < products.length; i++) {
+//   k += "<tr>";
+//   k += "<td>" + products[i].name + "</td>";
+//   k += "<td>" + products[i].category + "</td>";
+//   k += "<td>" + products[i].price + "</td>";
+//   k += "<td>" + products[i].in_stock + "</td>";
+//   k += "<td>" + products[i].description + "</td>";
+//   k += "<td>" + products[i].sell + "</td>";
+//   k += "<td>" + products[i].store + "</td>";
+//   k += "<td>" + "<button>Delete</button>" + "</td>";
+//   k += "</tr>";
+// }
+// k += "</tbody>";
+// document.getElementById("product-list").innerHTML = k;
 
 // TODO: un-bug this. It doesn't work correctly
 // This shows and hides a form field
@@ -41,51 +93,51 @@ $("#sell").change(function() {
 // TODO: Here I need to add a product name and
 // later remove it from this popup
 
-$(document).ready(function() {
-  $("#submit-product").click(function() {
-    //here the value is stored in variable.
-    var x = $("#name").val();
-    $("p").append(function(n) {
-      return "Looks great! A new product" + x + " added to your store!";
+// $(document).ready(function() {
+//   $("#submit-product").click(function() {
+//     //here the value is stored in variable.
+//     var x = $("#name").val();
+//     $("p").append(function(n) {
+//       return "Looks great! A new product" + x + " added to your store!";
 
-      // document.getElementById("#product-name").innerHTML = x;
-    });
-  });
-});
+//       // document.getElementById("#product-name").innerHTML = x;
+//     });
+//   });
+// });
 
 // Adding product to the data table
 
-$(document).ready(function() {
-  $("#submit-product").click(function() {
-    var name = $("#name").val();
-    var category = $("#category").val();
-    var price = $("#price").val();
-    var stock = $("#stock").val();
-    var description = $("#description").val();
-    var sell = $("#sell").val();
-    var store = $("#store").val();
-    var deleteItem = "<i class='fas fa-trash-alt'></i>";
-    var markup =
-      "<tr><td>" +
-      name +
-      "</td><td>" +
-      category +
-      "</td><td>" +
-      price +
-      "</td><td>" +
-      stock +
-      "</td><td>" +
-      description +
-      "</td><td>" +
-      sell +
-      "</td><td>" +
-      store +
-      "</td><td>" +
-      deleteItem +
-      "</td></tr>";
-    $("table tbody").append(markup);
-  });
-});
+// $(document).ready(function() {
+//   $("#submit-product").click(function() {
+//     var name = $("#name").val();
+//     var category = $("#category").val();
+//     var price = $("#price").val();
+//     var stock = $("#stock").val();
+//     var description = $("#description").val();
+//     var sell = $("#sell").val();
+//     var store = $("#store").val();
+//     var deleteItem = "<i class='fas fa-trash-alt'></i>";
+//     var markup =
+//       "<tr><td>" +
+//       name +
+//       "</td><td>" +
+//       category +
+//       "</td><td>" +
+//       price +
+//       "</td><td>" +
+//       stock +
+//       "</td><td>" +
+//       description +
+//       "</td><td>" +
+//       sell +
+//       "</td><td>" +
+//       store +
+//       "</td><td>" +
+//       deleteItem +
+//       "</td></tr>";
+//     $("table tbody").append(markup);
+//   });
+// });
 
 //Task description:
 
