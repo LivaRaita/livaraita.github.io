@@ -116,26 +116,26 @@
       });
 
       //TODO: now, try to retrieve the data and represent them in the table
+      // This could help: https://www.geeksforgeeks.org/how-to-convert-json-data-to-a-html-table-using-javascript-jquery/
 
       let productList = JSON.parse(window.localStorage.getItem("ProductList"));
 
-    //   $(document).ready(function(){
-    //     //   let products = JSON.parse(localStorage.getItem("products"));
-    //       $.getJSON("ProductList.json", function(data){
-    //           let productData = "";
-    //           $.each(data, function(key, value){
-    //               productData += "<tr>";
-    //               productData += "<td>"+value.name+"</td>";
-    //               productData += "<td>"+value.category+"</td>";
-    //               productData += "<td>"+value.price+"</td>";
-    //               productData += "<td>"+value.stock+"</td>";
-    //               productData += "<td>"+value.description+"</td>";
-    //               productData += "<td>"+value.sell+"</td>";
-    //               productData += "<td>"+value.store+"</td>";
-                
-    //           })
-    //       })
-    //   })
+      $(document).ready(function(){
+          $.getJSON("ProductList", function(data){
+              let productList = "";
+              $.each(data, function(key, value){
+                  productList += "<tr>";
+                  productList += "<td>"+value.name+"</td>";
+                  productList += "<td>"+value.category+"</td>";
+                  productList += "<td>"+value.price+"</td>";
+                  productList += "<td>"+value.stock+"</td>";
+                  productList += "<td>"+value.description+"</td>";
+                  productList += "<td>"+value.sell+"</td>";
+                  productList += "<td>"+value.store+"</td>";
+                  productList += "</tr>";
+              })
+          })
+      })
 
 
     </script>
