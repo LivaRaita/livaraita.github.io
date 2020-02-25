@@ -1,0 +1,3 @@
+<?php
+$testVar = "other file";
+?>

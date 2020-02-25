@@ -2,9 +2,21 @@
 
 let products = [];
 
+function objectId() {
+  return (
+    hex(Date.now() / 1000) +
+    " ".repeat(16).replace(/./g, () => hex(Math.random() * 16))
+  );
+}
+
+function hex(value) {
+  return Math.floor(value).toString(16);
+}
+
 const addProduct = ev => {
   ev.preventDefault();
   let product = {
+    product_id: objectId(),
     name: document.getElementById("name").value,
     category: document.getElementById("category").value,
     price: document.getElementById("price").value,
@@ -16,128 +28,58 @@ const addProduct = ev => {
   products.push(product);
   document.forms[0].reset();
 
+  addProductToTable(product);
+
   localStorage.setItem("ProductList", JSON.stringify(products));
 };
 document.addEventListener("DOMContentLoaded", () => {
   document
     .getElementById("submit-product")
     .addEventListener("click", addProduct);
-});
 
-//TAKE THE VALUES FROM THE JSON FILE AND REPRESENT IN THE TABLE
-
-// const products = [
-//   {
-//     name: "Movie",
-//     category: "Films, TV, Music & Games",
-//     price: 25,
-//     in_stock: 25,
-//     description: "Great product. Highly recommended for movie nights.",
-//     sell: true,
-//     store: "Premium Store"
-//   },
-//   {
-//     name: "Popcorn",
-//     category: "Food",
-//     price: 25,
-//     in_stock: 25,
-//     description: "Great product. Highly recommended for movie nights.",
-//     sell: true,
-//     store: "Premium Store"
-//   }
-// ];
-
-// let product = {
-//   name: "Movie",
-//   category: "Films, TV, Music & Games",
-//   price: 25,
-//   in_stock: 25,
-//   description: "Great product. Highly recommended for movie nights.",
-//   sell: true,
-//   store: "Premium Store"
-// };
-
-// For adding objects to the array
-
-// products.push(product);
-
-// // <---- This adds the data to the table ---->
-
-// var k = "<tbody>";
-// for (i = 0; i < products.length; i++) {
-//   k += "<tr>";
-//   k += "<td>" + products[i].name + "</td>";
-//   k += "<td>" + products[i].category + "</td>";
-//   k += "<td>" + products[i].price + "</td>";
-//   k += "<td>" + products[i].in_stock + "</td>";
-//   k += "<td>" + products[i].description + "</td>";
-//   k += "<td>" + products[i].sell + "</td>";
-//   k += "<td>" + products[i].store + "</td>";
-//   k += "<td>" + "<button>Delete</button>" + "</td>";
-//   k += "</tr>";
-// }
-// k += "</tbody>";
-// document.getElementById("product-list").innerHTML = k;
-
-// TODO: un-bug this. It doesn't work correctly
-// This shows and hides a form field
-
-$("#sell").change(function() {
-  if ($(this).is(":checked")) {
-    $("#storeDiv").show();
-  } else {
-    $("#storeDiv").hide();
+  let savedProducts = JSON.parse(window.localStorage.getItem("ProductList"));
+  if (savedProducts) {
+    products = savedProducts;
   }
+  fillTable(products);
 });
+
+function fillTable(productArray) {
+  productArray.forEach(addProductToTable);
+}
+
+function addProductToTable(value) {
+  let productListHTML = "";
+  productListHTML += "<tr>";
+  productListHTML += "<td>" + value.name + "</td>";
+  productListHTML += "<td>" + value.category + "</td>";
+  productListHTML += "<td>" + value.price + "</td>";
+  productListHTML += "<td>" + value.stock + "</td>";
+  productListHTML += "<td>" + value.description + "</td>";
+  productListHTML += "<td>" + value.sell + "</td>";
+  productListHTML += "<td>" + value.store + "</td>";
+  productListHTML +=
+    "<td><button class='remove'}>" +
+    "<i class='fas fa-trash-alt'></i>" +
+    "</button></td>";
+  productListHTML += "</tr>";
+  $("#productListHTML").append(productListHTML);
+}
+
+// Get modal when user adds a product
+
+var modalForSuccess = document.getElementById("success");
+var btnSubmit = document.getElementById("submit-product");
+var closeButton = document.getElementById("close-btn");
+var newProductPopup = document.getElementById("add-new-product");
+
+btnSubmit.onclick = function() {
+  newProductPopup.style.display = "none";
+  modalForSuccess.style.visibility = "visible";
+};
 
 // TODO: Here I need to add a product name and
 // later remove it from this popup
-
-// $(document).ready(function() {
-//   $("#submit-product").click(function() {
-//     //here the value is stored in variable.
-//     var x = $("#name").val();
-//     $("p").append(function(n) {
-//       return "Looks great! A new product" + x + " added to your store!";
-
-//       // document.getElementById("#product-name").innerHTML = x;
-//     });
-//   });
-// });
-
-// Adding product to the data table
-
-// $(document).ready(function() {
-//   $("#submit-product").click(function() {
-//     var name = $("#name").val();
-//     var category = $("#category").val();
-//     var price = $("#price").val();
-//     var stock = $("#stock").val();
-//     var description = $("#description").val();
-//     var sell = $("#sell").val();
-//     var store = $("#store").val();
-//     var deleteItem = "<i class='fas fa-trash-alt'></i>";
-//     var markup =
-//       "<tr><td>" +
-//       name +
-//       "</td><td>" +
-//       category +
-//       "</td><td>" +
-//       price +
-//       "</td><td>" +
-//       stock +
-//       "</td><td>" +
-//       description +
-//       "</td><td>" +
-//       sell +
-//       "</td><td>" +
-//       store +
-//       "</td><td>" +
-//       deleteItem +
-//       "</td></tr>";
-//     $("table tbody").append(markup);
-//   });
-// });
 
 //Task description:
 
@@ -145,8 +87,8 @@ $("#sell").change(function() {
 // UN-BUG Add minimum 4 different form fields, make one be visible only on some type of conditions (if one form field has been filled, checkbox selected, select field appropriate value selected)
 // Validate minimum two of the fields (on button click point nr.4), show a visual representation if fields ar not valid
 // Error messages for not valid fields will be treated as a bonus
-// Add a button that triggers the validation
-// If you find out a way how to save the data somewhere - it will be treated as a bonus
+// DONE Add a button that triggers the validation
+// DONE If you find out a way how to save the data somewhere - it will be treated as a bonus
 // If Validation passes show a popup with a full screen backdrop that contains some type of message with some data from the form (like: "thank you, username, we have received your request")
 // Add a button to the popup that closes it
 // Create a table where the data from the form will be shown, add an ID column and actions column that contains a delete button

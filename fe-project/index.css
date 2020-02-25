@@ -90,6 +90,7 @@ ul > li > a {
   display: flex;
   flex-direction: column;
   margin-top: 72px;
+  z-index: -1;
 }
 
 /* Toolbar */
@@ -189,8 +190,24 @@ div.scrollable {
 
 /* Product popup (small) styles */
 
+#success {
+  display: none;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  /* border-radius: 5px; */
+  width: 100%;
+  /* height: 100%; */
+  position: absolute;
+  top: 0;
+  /* background: #ffffff; */
+  border: 1px solid #e5e5e5;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
+  z-index: 10;
+}
+
 .overlay {
-  position: fixed;
+  position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
@@ -200,26 +217,36 @@ div.scrollable {
   align-items: center;
   background: rgba(0, 0, 0, 0.7);
   transition: opacity 500ms;
-  visibility: hidden;
+  /* visibility: hidden; */
   opacity: 0;
+  z-index: 10;
 }
 
 .overlay:target {
+  position: absolute;
+  display: flex;
+  top: 0;
   visibility: visible;
   opacity: 1;
+  z-index: 5;
 }
 
 .popup {
+  position: absolute;
   margin: 70px auto;
   padding: 20px;
   background: #fff;
   border-radius: 5px;
   width: 30%;
+  max-height: 30%;
+  overflow: auto;
+  /* height: auto; */
   position: relative;
   background: #ffffff;
   border: 1px solid #e5e5e5;
   box-sizing: border-box;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
+  z-index: 10;
   /* transition: all 5s ease-in-out; */
 }
 
@@ -242,13 +269,17 @@ div.scrollable {
     color: #06d85f;
   } */
 .popup .content {
-  max-height: 30%;
+  /* max-height: 30%; */
   overflow: auto;
 }
 
 .popup-btn {
   text-decoration: none;
 }
+
+/* .btn-modal {
+  bottom: 20px;
+} */
 
 /* Product popup (full screen) styles */
 
@@ -258,7 +289,7 @@ div.scrollable {
   bottom: 0;
   left: 0;
   right: 0;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   background: #ffffff;
@@ -269,6 +300,7 @@ div.scrollable {
 }
 
 .overlay-full-screen:target {
+  display: flex;
   visibility: visible;
   opacity: 1;
 }
@@ -285,7 +317,7 @@ div.scrollable {
   /* border-radius: 5px; */
   /* width: 30%; */
   /* position: relative; */
-  background: #ffffff;
+
   /* border: 1px solid #e5e5e5; */
   /* box-sizing: border-box;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12); */
