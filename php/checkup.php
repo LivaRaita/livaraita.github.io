@@ -5,7 +5,8 @@ Create a script that writes the data you pass as arguments to a file -->
 <?php
 $arr = ["key_0" => 0, "key_1" => 1, "key_2" => 2];
 
-foreach($arr) {
-    echo "This is " . $key}; 
+$arr.foreach ($variable as $key => $value) {
+    echo "This is " . $key;
+} 
 ?>
 
