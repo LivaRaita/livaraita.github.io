@@ -1,5 +1,3 @@
-// DONE: Create and save an object from the values provided in the form
-
 let products = [];
 
 function objectId() {
@@ -32,6 +30,7 @@ const addProduct = ev => {
 
   localStorage.setItem("ProductList", JSON.stringify(products));
 };
+
 document.addEventListener("DOMContentLoaded", () => {
   document
     .getElementById("submit-product")
@@ -42,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     products = savedProducts;
   }
   fillTable(products);
+  initializeRemoveButtons();
 });
 
 function fillTable(productArray) {
@@ -59,7 +59,9 @@ function addProductToTable(value) {
   productListHTML += "<td>" + value.sell + "</td>";
   productListHTML += "<td>" + value.store + "</td>";
   productListHTML +=
-    "<td><button class='remove'}>" +
+    "<td><button class='remove' data-product-id='" +
+    value.product_id +
+    "'>" +
     "<i class='fas fa-trash-alt'></i>" +
     "</button></td>";
   productListHTML += "</tr>";
@@ -68,15 +70,39 @@ function addProductToTable(value) {
 
 // Get modal when user adds a product
 
-var modalForSuccess = document.getElementById("success");
-var btnSubmit = document.getElementById("submit-product");
-var closeButton = document.getElementById("close-btn");
-var newProductPopup = document.getElementById("add-new-product");
+let modalForSuccess = document.getElementById("success");
+let btnSubmit = document.getElementById("submit-product");
+let closeButton = document.getElementById("close-btn");
+let newProductPopup = document.getElementById("add-new-product");
 
 btnSubmit.onclick = function() {
   newProductPopup.style.display = "none";
   modalForSuccess.style.visibility = "visible";
 };
+
+function initializeRemoveButtons() {
+  let btnRemove = document.querySelectorAll(".remove");
+  let deleteItemPopup = document.getElementById("delete-item");
+
+  for (var i = 0; i < btnRemove.length; i++) {
+    btnRemove[i].addEventListener("click", function() {
+      let deleteItemPopup = document.getElementById("delete-item");
+      deleteItemPopup.classList.toggle("overlay-visible");
+      console.log(this.dataset.productId);
+    });
+  }
+}
+
+//Add form validation with if statements
+
+// let deleteItemPopup = document.getElementsByClassName("overlay");
+// deleteItemPopup.classList.toggle("overlay:target");
+// });
+
+// btnRemove.onclick = function() {
+//   let deleteItemPopup = document.getElementsByClassName("overlay");
+//   deleteItemPopup.classList.toggle("overlay:target");
+// };
 
 // TODO: Here I need to add a product name and
 // later remove it from this popup

@@ -14,47 +14,16 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <!-- fixed navigation bar at the top with extra buttons
-
-some type of logo that leads to homepage
-navigation element hover opens child menu
-outer link(s)
-inner link(s) -->
 
     <div class="navbar">
       <a id="logo" href="#"><i class="fas fa-store"></i></a>
-      <!-- <div class="menu"><a>Menu</a>
-        <ul hidden>
-          <li><a href="#registered-products">Registered products</a></li>
-          <li><a href="https://google.com" target="_blank">Google <i class="fas fa-external-link-alt"></i></a></li>
-          <li><a href="#">Option 3</a></li>
-        </ul>
-      </div> -->
     </div>
 
     <div class="container">
         <div class="toolbar">
             <button id="new-product" class="btn-confirm"><a href="#add-new-product"><span><i class="fas fa-plus"></i></span>New Product</a></button>
         </div>
-
-    <!-- Product registration form
-
-Form heading
-Name (text input), required
-Category (select), required
-Price (number), required
-In stock amount (number)
-description
-can be sold (checkbox)
-Submit, clear button -->
-    
-
-    <!-- Table based on form data
-
-Styled for better looks
-ID colum
-Action (edit, delete) column
-A popup that that asks us for delete confirmation -->
+    </div>
 
     <div class="table-container">
       <h2 id="registered-products">My products</h2>
@@ -75,19 +44,7 @@ A popup that that asks us for delete confirmation -->
         </tbody>
       </table>
     </div>
-</div>
 
-  <!-- <div id="delete-item" class="overlay:target">
-      <div class="popup">
-          <h2>Delete a product</h2>
-          <a class="close" href="#">&times;</a>
-          <div class="content">
-              The item will be deleted permanently, this action can't be undone.
-          </div>
-          <button class="btn-confirm"><a href="#">Delete</a></button>
-          <button class="btn-decline"><a href="#">Cancel</a></button>
-      </div>
-  </div> -->
 
     <div id="add-new-product" class="overlay-full-screen">
         <div class="popup2">
@@ -99,7 +56,7 @@ A popup that that asks us for delete confirmation -->
                     <div class="form-items">
                     <label for="name">Name (required)</label>
                     <!-- Why the attribute 'required' doesn't work? How it interacts with javascript? -->
-                    <input id="name" type="text" required />
+                    <input name="product-name" id="name" type="text" required/>
                     </div>
         
                     <div class="form-items">
@@ -145,9 +102,8 @@ A popup that that asks us for delete confirmation -->
                     </div>
         
                     <div class="form-items">
-                        <button id="submit-product" class="btn-confirm" type="submit">
-                          <a href="#">Submit Product</a>
-                        </button>
+                        <button id="submit-product" class="btn-confirm" type="submit">Submit Product
+                    </button>
                         <button id="btn-reset" class="btn-decline" type="reset">
                           Reset
                         </button>
@@ -157,15 +113,10 @@ A popup that that asks us for delete confirmation -->
                 </form>
                 </div>
             </div>
-            <!-- <div class="content">
-                The item will be deleted permanently, this action can't be undone.
-            </div> -->
-            <!-- <button class="btn-confirm"><a href="#">Submit Product</a></button>
-            <button class="btn-decline"><a href="#">Cancel</a></button> -->
         </div>
     </div>
 
-    <div id="delete-item" class="overlay:target">
+    <div id="delete-item" class="overlay">
       <div class="popup">
           <h2>Delete a product</h2>
           <a class="close" href="#">&times;</a>
@@ -175,9 +126,9 @@ A popup that that asks us for delete confirmation -->
           <button class="btn-confirm"><a href="#">Delete</a></button>
           <button class="btn-decline"><a href="#">Cancel</a></button>
       </div>
-  </div>
+    </div>
 
-    <div id="success" class="overlay:target">
+    <div id="success" class="overlay">
         <div class="popup">
             <h2>New product added</h2>
             <a id="close-btn" class="close" href="#">&times;</a>

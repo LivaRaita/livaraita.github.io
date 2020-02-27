@@ -206,42 +206,63 @@ div.scrollable {
   z-index: 10;
 }
 
-.overlay {
+/* .overlay {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.7);
   transition: opacity 500ms;
-  /* visibility: hidden; */
+  visibility: hidden;
   opacity: 0;
   z-index: 10;
-}
+} */
 
-.overlay:target {
+.overlay {
+  display: none;
   position: absolute;
+  visibility: hidden;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100vw;
+  opacity: 0;
+  /* position: absolute;
   display: flex;
   top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  align-items: center;
   visibility: visible;
   opacity: 1;
-  z-index: 5;
+  z-index: 10; */
+}
+
+.overlay-visible {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
 }
 
 .popup {
   position: absolute;
-  margin: 70px auto;
+  /* margin: 70px auto; */
   padding: 20px;
-  background: #fff;
   border-radius: 5px;
   width: 30%;
   max-height: 30%;
   overflow: auto;
   /* height: auto; */
-  position: relative;
   background: #ffffff;
   border: 1px solid #e5e5e5;
   box-sizing: border-box;

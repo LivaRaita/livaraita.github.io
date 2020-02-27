@@ -1,6 +1,6 @@
 <?php
 
-require_once "./db-wrapper.php";
+require_once "./helpers/db-wrapper.php";
 
 $id = isset($_GET["id"]) ? $_GET["id"] : '';
 
@@ -13,7 +13,9 @@ if ($id) {
 
     $db->closeConnection();
 }
+if(isset($_GET["redirect"]) && !(bool)$_GET["redirect"]) {
+    return;
+}
 
-
-header("Location: /livaraita.github.io/php/crud/index.php")
+header("Location: /livaraita.github.io/php/crud-2")
 ?>
