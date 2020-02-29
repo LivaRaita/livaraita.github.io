@@ -320,7 +320,7 @@ div.scrollable {
   z-index: 4;
 }
 
-.overlay-full-screen:target {
+.overlay-full-screen-visible {
   display: flex;
   visibility: visible;
   opacity: 1;

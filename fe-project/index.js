@@ -1,3 +1,9 @@
+let newProductButton = document.getElementById("new-product");
+let addNewProductPopup = document.getElementById("add-new-product");
+newProductButton.addEventListener("click", function() {
+  addNewProductPopup.classList.add("overlay-full-screen-visible");
+});
+
 let products = [];
 
 function objectId() {
@@ -45,12 +51,14 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function fillTable(productArray) {
+  $("#productListHTML tr").remove();
   productArray.forEach(addProductToTable);
 }
 
 function addProductToTable(value) {
   let productListHTML = "";
   productListHTML += "<tr>";
+  productListHTML += "<td>" + value.product_id + "</td>";
   productListHTML += "<td>" + value.name + "</td>";
   productListHTML += "<td>" + value.category + "</td>";
   productListHTML += "<td>" + value.price + "</td>";
@@ -72,28 +80,55 @@ function addProductToTable(value) {
 
 let modalForSuccess = document.getElementById("success");
 let btnSubmit = document.getElementById("submit-product");
-let closeButton = document.getElementById("close-btn");
-let newProductPopup = document.getElementById("add-new-product");
+// let closeButton = document.getElementById("close-btn");
+// let newProductPopup = document.getElementById("add-new-product");
 
-btnSubmit.onclick = function() {
-  newProductPopup.style.display = "none";
-  modalForSuccess.style.visibility = "visible";
-};
+// btnSubmit.onclick = function() {
+//   newProductPopup.style.display = "none";
+//   modalForSuccess.style.visibility = "visible";
+// };
 
 function initializeRemoveButtons() {
   let btnRemove = document.querySelectorAll(".remove");
+
   let deleteItemPopup = document.getElementById("delete-item");
+
+  function openDeletePopup() {
+    // let deleteItemPopup = document.getElementById("delete-item");
+    deleteItemPopup.classList.toggle("overlay-visible");
+  }
+
+  let closePopup = document.querySelectorAll(".close");
+  for (var i = 0; i < closePopup.length; i++) {
+    closePopup[i].addEventListener("click", function() {
+      deleteItemPopup.classList.remove("overlay-visible");
+      addNewProductPopup.classList.remove("overlay-full-screen-visible");
+    });
+  }
 
   for (var i = 0; i < btnRemove.length; i++) {
     btnRemove[i].addEventListener("click", function() {
-      let deleteItemPopup = document.getElementById("delete-item");
-      deleteItemPopup.classList.toggle("overlay-visible");
-      console.log(this.dataset.productId);
+      openDeletePopup();
+
+      let deleteButton = document.querySelector("#delete-button");
+      deleteButton.setAttribute("data-id", this.dataset.productId);
+
+      let deleteButtonId = deleteButton.getAttribute("data-id");
+
+      deleteButton.addEventListener("click", function() {
+        for (let i = 0; i < products.length; i++) {
+          if (products[i].product_id === deleteButtonId) {
+            products.splice(i, 1);
+            localStorage.setItem("ProductList", JSON.stringify(products));
+            fillTable(products);
+          }
+        }
+      });
     });
   }
 }
 
-//Add form validation with if statements
+//TODO: Add form validation with if statements
 
 // let deleteItemPopup = document.getElementsByClassName("overlay");
 // deleteItemPopup.classList.toggle("overlay:target");

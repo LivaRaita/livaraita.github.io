@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>FE Project</title>
     <script
-  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-  integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
@@ -31,6 +31,7 @@
       <table>
         <thead>
           <!-- <th>ID</th> -->
+          <th>ID</th>
           <th>Name</th>
           <th>Category</th>
           <th>Price</th>
@@ -123,7 +124,7 @@
           <div class="content">
               The item will be deleted permanently, this action can't be undone.
           </div>
-          <button class="btn-confirm"><a href="#">Delete</a></button>
+          <button id="delete-button" class="btn-confirm" data-id=""><a href="#">Delete</a></button>
           <button class="btn-decline"><a href="#">Cancel</a></button>
       </div>
     </div>
@@ -131,9 +132,9 @@
     <div id="success" class="overlay">
         <div class="popup">
             <h2>New product added</h2>
-            <a id="close-btn" class="close" href="#">&times;</a>
+            <a id="close" class="close" href="#">&times;</a>
             <div class="content">
-                <p>You've added a new product <strong>"<span></span>"</strong> to the list!</p>
+                <p>You've added a new product <strong>"<span>New product name</span>"</strong> to the list!</p>
             </div>
             <button class="btn-confirm"><a href="#">Got it!</a></button>
         </div>
