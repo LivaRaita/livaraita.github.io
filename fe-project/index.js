@@ -42,6 +42,8 @@ const addProduct = function(ev) {
   products.push(product);
   document.forms[0].reset();
 
+  storeSelection.classList.remove("required");
+
   addProductToTable(product);
 
   localStorage.setItem("ProductList", JSON.stringify(products));
@@ -66,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   fillTable(products);
   initializeRemoveButtons();
+  addNewProductPopup.classList.remove("overlay-full-screen-visible");
 });
 
 function fillTable(productArray) {
@@ -92,6 +95,7 @@ function addProductToTable(value) {
     "</button></td>";
   productListHTML += "</tr>";
   $("#productListHTML").append(productListHTML);
+  initializeRemoveButtons();
 }
 
 let deleteItemPopup = document.getElementById("delete-item");
@@ -99,7 +103,7 @@ let successPopup = document.getElementById("success");
 let displayProductName = document.getElementById("display-product-name");
 
 function openDeletePopup() {
-  deleteItemPopup.classList.toggle("overlay-visible");
+  deleteItemPopup.classList.add("overlay-visible");
 }
 
 let closePopup = document.querySelectorAll(".close");
@@ -115,27 +119,30 @@ function initializeRemoveButtons() {
   let btnRemove = document.querySelectorAll(".remove");
 
   for (var i = 0; i < btnRemove.length; i++) {
-    btnRemove[i].addEventListener("click", function() {
-      openDeletePopup();
-
-      let deleteButton = document.querySelector("#delete-button");
-      deleteButton.setAttribute("data-id", this.dataset.productId);
-
-      let deleteButtonId = deleteButton.getAttribute("data-id");
-
-      deleteButton.addEventListener("click", function() {
-        for (let i = 0; i < products.length; i++) {
-          if (products[i].product_id === deleteButtonId) {
-            products.splice(i, 1);
-            localStorage.setItem("ProductList", JSON.stringify(products));
-            fillTable(products);
-            deleteItemPopup.classList.remove("overlay-visible");
-            initializeRemoveButtons();
-          }
-        }
-      });
-    });
+    btnRemove[i].removeEventListener("click", onRemoveButtonClicked);
+    btnRemove[i].addEventListener("click", onRemoveButtonClicked);
   }
+}
+
+function onRemoveButtonClicked() {
+  openDeletePopup();
+
+  let deleteButton = document.querySelector("#delete-button");
+  deleteButton.setAttribute("data-id", this.dataset.productId);
+
+  deleteButton.addEventListener("click", function() {
+    let deleteButtonId = this.getAttribute("data-id");
+
+    for (let i = 0; i < products.length; i++) {
+      if (products[i].product_id === deleteButtonId) {
+        products.splice(i, 1);
+        localStorage.setItem("ProductList", JSON.stringify(products));
+        fillTable(products);
+        deleteItemPopup.classList.remove("overlay-visible");
+        initializeRemoveButtons();
+      }
+    }
+  });
 }
 
 let sell = document.getElementById("sell");
