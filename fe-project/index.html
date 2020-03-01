@@ -17,12 +17,7 @@
 
     <div class="navbar">
       <a id="logo" href="#"><i class="fas fa-store"></i></a>
-    </div>
-
-    <div class="container">
-        <div class="toolbar">
-            <button id="new-product" class="btn-confirm"><a href="#add-new-product"><span><i class="fas fa-plus"></i></span>New Product</a></button>
-        </div>
+      <button id="new-product" class="btn-confirm"><span><i class="fas fa-plus"></i></span>New Product</button>
     </div>
 
     <div class="table-container">
@@ -50,20 +45,20 @@
     <div id="add-new-product" class="overlay-full-screen">
         <div class="popup2">
             <h2>Add new product</h2>
-            <a class="close" href="#">&times;</a>
+            <button class="close-btn close">&times;</button>
             <div class="form-container">
                 <div class="input-groups">
                 <form>
                     <div class="form-items">
                     <label for="name">Name (required)</label>
                     <!-- Why the attribute 'required' doesn't work? How it interacts with javascript? -->
-                    <input name="product-name" id="name" type="text" required/>
+                    <input name="product-name" id="name" type="text" class="required" required/>
                     </div>
         
                     <div class="form-items">
                     <label for="category">Category (required)</label>
-                    <select name="category" id="category" required>
-                        <option disabled>Select a category</option>
+                    <select name="category" id="category" class="required" required>
+                        <option value="none">Select a category</option>
                         <option value="Clothing">Clothing</option>
                         <option value="Home, Garden, pets & DIY ">Home, Garden, pets & DIY </option>
                         <option value="Films, TV, Music & Games">Films, TV, Music & Games</option>
@@ -92,17 +87,17 @@
                     <input id="sell" type="checkbox" value="no"/>
                     </div>
 
-                    <div id="storeDiv" class="form-items">
+                    <div id="storeDiv" class="form-items form-item-hidden">
                         <label for="store">Select a store (required)</label>
-                        <select name="store" id="store" required>
-                            <option disabled>Select a store</option>
+                        <select name="store" id="store"  >
+                            <option value="none">Select a store</option>
                             <option value="All stores">All stores</option>
                             <option value="Premium Store">Premium Store</option>
                             <option value="Fancy Store">Fancy Store</option>
                         </select>
                     </div>
         
-                    <div class="form-items">
+                    <div>
                         <button id="submit-product" class="btn-confirm" type="submit">Submit Product
                     </button>
                         <button id="btn-reset" class="btn-decline" type="reset">
@@ -118,25 +113,28 @@
     </div>
 
     <div id="delete-item" class="overlay">
-      <div class="popup">
+      <div class="popup popup-small">
           <h2>Delete a product</h2>
-          <a class="close" href="#">&times;</a>
+          <!-- TODO: Separate CSS classes from JS classes for Close functionality (Cancel button and X button) -->
+          <button class="close-btn close">&times;</button>
           <div class="content">
               The item will be deleted permanently, this action can't be undone.
           </div>
-          <button id="delete-button" class="btn-confirm" data-id=""><a href="#">Delete</a></button>
-          <button class="btn-decline"><a href="#">Cancel</a></button>
-      </div>
+          <div class="button-group">
+            <button id="delete-button" class="btn-confirm" data-id="">Delete</button>
+            <button class="btn-decline close">Cancel</button>
+        </div>
+        </div>
     </div>
 
     <div id="success" class="overlay">
-        <div class="popup">
+        <div class="popup popup-small">
             <h2>New product added</h2>
-            <a id="close" class="close" href="#">&times;</a>
+            <button class="close-btn close">&times;</button>
             <div class="content">
-                <p>You've added a new product <strong>"<span>New product name</span>"</strong> to the list!</p>
+                <p>You've added a new product <strong>"<span id="display-product-name">New product name</span>"</strong> to the list!</p>
             </div>
-            <button class="btn-confirm"><a href="#">Got it!</a></button>
+            <button class="btn-confirm close button-group">Got it!</button>
         </div>
     </div>
 
