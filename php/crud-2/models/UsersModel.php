@@ -6,13 +6,14 @@
 
         public static function getAllUsers($limit = 25) 
         {
-            return $result = DB::run("SELECT name, password, id FROM people LIMIT" . $limit);
+            echo $limit;
+            return $result = DB::run("SELECT name, password, id FROM people LIMIT " . $limit);
         }
 
-        public function addUser($data)
+        public function addUser(User $data)
         {
-            $name = $data["name"];
-            $password = $data["password"];
+            $name = $data->getName();
+            $password = $data->getPassword();
 
             $sql = "INSERT INTO people (name, password) VALUES ('$name', '$password')";
             DB::run($sql);

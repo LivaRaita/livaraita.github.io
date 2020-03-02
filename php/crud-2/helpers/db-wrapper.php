@@ -24,6 +24,7 @@ class DB {
 
     public static function closeConnection() {
         static::$connection->close();
+        static::$connection = null;
     }
 
     public static function run($sql) {
@@ -33,12 +34,21 @@ class DB {
 
         $response = static::$connection->query($sql);
 
+        if ($response === TRUE) {
+            $response = static::$connection->insert_id;
+        }
+
         static::closeConnection();
 
-        if ($response) {
-            return $response;
-        } else {
+        // if ($response) {
+        //     return $response;
+        // } else {
+        //     die("SQL error: " . static::$connection->error . "</br>");
+        // }
+        if (static::$connection->error) {
             die("SQL error: " . static::$connection->error . "</br>");
+        } else {
+            return $response;
         }
     }
 }
