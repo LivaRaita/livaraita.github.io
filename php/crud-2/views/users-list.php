@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,9 +23,12 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-      <button class="btn btn-primary my-2 my-sm-0" type="submit"><a class="text-white" href="/livaraita.github.io/php/crud-2/add.php">Add Person</a></button>
-  
+  <div>
+    <button class="btn btn-primary my-2 my-sm-0" type="submit"><a class="text-white" href="/livaraita.github.io/php/crud-2/add">Add Person</a></button>
+    <a type="submit" <?= isset($_SESSION["user_id"]) ? 'hidden' : '' ?> class="text-white btn btn-primary my-2 my-sm-0" href="/livaraita.github.io/php/crud-2/login.php">Login</a>
+    <a type="submit" <?= isset($_SESSION["user_id"]) ? '' : 'hidden' ?> class="text-white btn btn-primary my-2 my-sm-0" href="/livaraita.github.io/php/crud-2/logout.php">Logout</a>
   </div>
+  
 </nav>
 
 <div class="container">

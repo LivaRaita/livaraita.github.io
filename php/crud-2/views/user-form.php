@@ -18,7 +18,7 @@
 </head>
 <body>
     <div class="container d-flex justify-content-center">
-        <form action="/livaraita.github.io/php/crud-2/edit.php" method="post">
+        <form action="/livaraita.github.io/php/crud-2/<?= $edit ? 'edit.php' : 'add' ?>" method="post">
             <div class="form-group">
                 <label>Name
                     <input name="name" class="form-control" type="text" value="<?php echo $name ?>">

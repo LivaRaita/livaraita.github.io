@@ -4,6 +4,7 @@
         require_once "../crud-2/controllers/users/index.php";
       break;
       case "/livaraita.github.io/php/crud-2/add":
+        echo "test";
         require_once "../crud-2/controllers/add.php";
       break;
       default:

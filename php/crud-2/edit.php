@@ -17,6 +17,7 @@ require_once "./models/UsersModel.php";
 $name = '';
 $password = '';
 $id = '';
+$edit = true;
 
 
 if (isset($_GET["id"])){
@@ -29,6 +30,6 @@ if (isset($_GET["id"])){
     }
 }
 
-require_once "./views/users-form.php"
+require_once __DIR__ . "/views/user-form.php"
 ?>
 

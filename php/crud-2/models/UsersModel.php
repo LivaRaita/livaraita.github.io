@@ -6,7 +6,6 @@
 
         public static function getAllUsers($limit = 25) 
         {
-            echo $limit;
             return $result = DB::run("SELECT name, password, id FROM people LIMIT " . $limit);
         }
 
