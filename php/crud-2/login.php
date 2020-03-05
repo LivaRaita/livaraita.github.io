@@ -6,25 +6,51 @@ if ($_SESSION['user_id']) {
     header("location: /livaraita.github.io/php/crud-2/"); // will return to index page (nothing else will be executed in this file)
 } 
 
+function getToken($length) { 
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
+    $randomString = ''; 
+
+    for ($i = 0; $i < $length; $i++) { 
+        $index = rand(0, strlen($characters) - 1); 
+        $randomString .= $characters[$index]; 
+    } 
+
+    return $randomString; 
+};
+
 if (isset($_POST['submit'])) {
+
+    if($_SESSION['csrfToken'] !== $_POST['csrfToken']) {
+        echo "What a hacker";
+        return;
+    }
     require_once "helpers/db-wrapper.php";
+    require_once "entity/User.php";
     $name = $_POST["name"];
     $response = DB::run("SELECT * FROM people WHERE name='$name'");
     $password;
+    $user;
 
     if (!$response->num_rows) {
         echo "User does not exist";
         return;
     } else {
+
         while($row = mysqli_fetch_assoc($response)) {
-            $password = $row["password"];
-            $user_id = $row["id"];
+            $user = new User($row);
         }
 
-        $validPassword = password_verify($_POST["password"], $password);
+        
+        $saltedPassword = $_POST["password"] . $user::SALT;
+        $validPassword = password_verify($saltedPassword, $user->getPassword());
+
+        // echo $saltedPassword;
+        // var_dump($user);
+        // var_dump($_POST);
 
         if($validPassword) {
-            $_SESSION['user_id'] = $user_id;
+            $_SESSION['user_id'] = $user->getId();
+            $_SESSION['user name'] = $_POST["name"];
             header("Location: /livaraita.github.io/php/crud-2/");
         } else {
             echo "Invalid password";
@@ -32,9 +58,16 @@ if (isset($_POST['submit'])) {
 
     }
 
-        
-    }
+} else {
+    $csrfToken = getToken(25);
+    $_SESSION['csrfToken'] = $token;
+
+}
+
 ?>
+        
+  
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -67,6 +100,11 @@ if (isset($_POST['submit'])) {
                     <input name="password" class="form-control" type="password" value="<?= $password?>">
                 </label>
             </div>
+
+            <!-- Add hidden token field -->
+            <input name="csrfToken" value="<?= $csrfToken ?>" hidden>
+            <!-- ---- -->
+
             <button name="submit" type="submit" class="btn btn-primary">Login (PHP)</button>
            
         </form>

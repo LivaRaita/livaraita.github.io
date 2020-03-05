@@ -1,4 +1,9 @@
 <?php
+session_start();
+if($_GET["token"] !== $_SESSION["edit_access_token"]) {
+    header("Location:  /livaraita.github.io/php/crud-2/");
+}
+
 require_once "./models/UsersModel.php";
     if(isset ($_POST["submit"])){
 
