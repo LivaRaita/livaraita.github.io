@@ -21,7 +21,7 @@ if(isset($_GET["id"])){
         $title = $_POST["title"];
         $description = $_POST["description"];
         db();
-        $query = "UPDATE todo SET todoDescription = '$description'  WHERE id = '$id'";
+        $query = "UPDATE todolist SET todoDescription = '$description'  WHERE id = '$id'";
         $insertEdited = mysqli_query($link, $query);
         if($insertEdited){
             echo "successfully updated";
