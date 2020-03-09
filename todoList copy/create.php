@@ -6,11 +6,10 @@ $description = $_POST["todoDescription"];
 //connect to database
 db();
 global $link;
-$query = "INSERT INTO todolist (todoDescription, date) VALUES ('$description', now())";
-
+$query = "INSERT INTO todolist(todoDescription, date) VALUES ('$description', now())";
 $insertTodo = mysqli_query($link, $query);
 if($insertTodo){
-
+echo "successfully";
 } else {
 echo mysqli_error($link);
 }
@@ -39,8 +38,8 @@ mysqli_close($link);
 </html>
 
 <?php
-    // if(isset($_POST["submit"])) {
-    // $description = $_POST["todoDescription"];
-    // echo "you filled description " . $description;
-    // }
+    if(isset($_POST["submit"])) {
+    $description = $_POST["todoDescription"];
+    echo "you filled description " . $description;
+    }
 ?>

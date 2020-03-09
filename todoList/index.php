@@ -1,5 +1,7 @@
 <?php
-    require_once("db_connect.php"); 
+    
+    require_once("process.php");
+  
 ?>
 
 
@@ -9,34 +11,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Todos</title>
+ 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-    <h2>My Todos</h2>
-    <p><a href="create.php">Add a Todo</a></p>
+    <?php
+        if(isset($_SESSION["message"])):?>
 
-<?php
-    db();
-    global $link;
-    $query = "SELECT id, todoDescription, date FROM todolist";
-    $result = mysqli_query($link, $query);
+        <div class="alert alert-<?=$_SESSION['msg_type']?>">
+            
+            <?php
+                echo $_SESSION["message"];
+                unset ($_SESSION["message"]);
+                
+            ?>
+        </div>
+        <?php endif ?>
 
-    //check if there’s any data inside the table
-    if(mysqli_num_rows($result) >= 1){
-        while($row = mysqli_fetch_array($result)){
-            $id = $row['id'];
-            $description = $row['todoDescription'];
-            $date = $row['date'];
-            ?> 
 
-    <ul>
-        <li><a href="detail.php?id=<?php echo $id?>"><?php echo $description ?></a></li><?php echo "[[$date]]";?>
-        <button type="button"><a href="edit.php?id=<?php echo $id?>">Edit</a></button>
-        <button type="button"><a href="delete.php?id=<?php echo $id?>">Delete</a></button>
-    </ul>
-<?php
-    }
-}
- ?> 
-    
+    <div class="container">
+        <div class="row">
+            <form method="POST" action="process.php">
+                <input type="hidden" name="id" value="<?php echo $id; ?>">
+                <div class="form-group">
+                    <input name="todoDescription" type="text" class="form-control" value="<?php echo $description; ?>" placeholder="Write a task...">
+                </div>
+                <div class="form-group">
+                <?php
+                    if($update == true):
+                ?>
+                    <button name="update" type="submit" value="submit" class="btn btn-info">Update</button>
+                <?php else: ?>
+                    <button name="submit" type="submit" value="submit">Add</button>
+                <?php endif; ?>
+                </div>
+                
+            </form>
+            </div>
+
+        <?php
+            $mysqli = new mysqli("mysql-server-80", "root", "root_password", "todolist") or die(mysqli_error($mysqli));
+            $result = $mysqli->query("SELECT * FROM todolist") or die($mysqli->error);
+        ?>
+            <div class="row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                       
+                        <th>My Todos</th>
+                        <th colspan="2">Action</th>
+                        </tr>
+                    </thead>
+        <?php
+            while ($row = $result->fetch_assoc()):?>
+                <tr>
+                   <!-- if task done, than the checkbox is checked -->
+                   <!-- if item is not done than it doesn't show as checked -->
+                    <td>
+                        <form method="POST" action="process.php">
+                            <input href="index.php?as=checked&row=<?php echo $row['id']; ?>" type="checkbox" value="1" name="checked" class="mr-2" <?php echo $row['checked'] ? 'checked': ''?> onchange='this.form.submit()'><?php echo $row["todoDescription"]?></td>
+                        </form>
+                    <td>
+                        <a name="edit" href="index.php?edit=<?php echo $row['id']?>" class="btn btn-primary">Edit</a>
+                        <a name="delete" href="index.php?delete=<?php echo $row['id']?>" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                
+                
+
+            <?php endwhile; ?>
+
+                </table>
+
+
+            </div>
+
+
+
+
+        
+        <?php
+        //     }
+        // }
+        ?> 
+    </div>
+ <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script type="text/javascript" src="scripts.js"></script>
 </body>
 </html>
