@@ -55,20 +55,43 @@ if(isset($_POST["update"])) {
     header("location: index.php");
 }
 
-if($_POST["checked"]) {
-    $checked = true;
-}
 
-//Now, connect this to the database and add value 1
 
-if($checked) {
-    $id = $_POST["id"];
-    $checked = $_POST[1];
 
-    $mysqli->query("UPDATE todolist SET checked='$checked' WHERE id='$id'") or die($mysqli->error());
+// if($_POST["checked"]=="1") {
+//     $id = $_POST["id"];
+//     $checked = $_POST["checked"];
     
-    header("location: index.php");
-}
+   
+//     // $checked = true;
+//     // $checked = $_POST["checked"];
+
+//     $mysqli->query("UPDATE todolist SET checked='$checked' WHERE id='$id'") or die($mysqli->error());
+  
+//     header("location: index.php");
+//     }
+
+    // if (isset($_POST['checked']==1)){
+    //     foreach($_POST['checked'] as $id=>&$selected)
+    //     echo "checked"
+        
+    //     {
+        
+    //         if ($_POST['checked']=="1"){
+        
+    //             $mysqli->query("UPDATE todolist SET checked='1' WHERE id='$id'") or die($mysqli->error());
+        
+    //         } else{
+        
+    //             $mysqli->query("UPDATE todolist SET checked='0' WHERE id='$id'") or die($mysqli->error());
+        
+    //         }
+        
+    //     }
+    //     }
+    
+    
+
 
 
 

@@ -69,6 +69,7 @@
                    <!-- if item is not done than it doesn't show as checked -->
                     <td>
                         <form method="POST" action="process.php">
+                            <input type="hidden" name="id" value="<?php echo $id; ?>">
                             <input href="index.php?as=checked&row=<?php echo $row['id']; ?>" type="checkbox" value="1" name="checked" class="mr-2" <?php echo $row['checked'] ? 'checked': ''?> onchange='this.form.submit()'><?php echo $row["todoDescription"]?></td>
                         </form>
                     <td>
