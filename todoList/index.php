@@ -13,6 +13,7 @@
     <title>My Todos</title>
  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <?php
@@ -22,7 +23,7 @@
             
             <?php
                 echo $_SESSION["message"];
-                unset ($_SESSION["message"]);
+                unset($_SESSION["message"]);
                 
             ?>
         </div>
@@ -47,43 +48,88 @@
                 </div>
                 
             </form>
+
             </div>
 
-        <?php
-            $mysqli = new mysqli("mysql-server-80", "root", "root_password", "todolist") or die(mysqli_error($mysqli));
-            $result = $mysqli->query("SELECT * FROM todolist") or die($mysqli->error);
-        ?>
-            <div class="row">
-                <table class="table">
-                    <thead>
+            <div class="todo">
+
+                <?php
+                    $mysqli = new mysqli("mysql-server-80", "root", "root_password", "todolist") or die(mysqli_error($mysqli));
+                    $result = $mysqli->query("SELECT * FROM todolist WHERE checked = 0") or die($mysqli->error);
+                ?>
+                    <div class="row">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                            
+                                <th>My Todos</th>
+                                <th colspan="2">Action</th>
+                                </tr>
+                            </thead>
+                <?php
+                    while ($row = $result->fetch_assoc()):?>
                         <tr>
-                       
-                        <th>My Todos</th>
-                        <th colspan="2">Action</th>
+                            <td>
+                                <form method="POST" action="process.php">
+                                    <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
+                                    <input type="hidden" name="checked" value="0">
+                                    <input href="index.php?checked=<?php echo $row['id'] ?>" type="checkbox" value="1" name="checked" class="mr-2" <?php echo $row['checked'] ? 'checked': ''?> onchange='this.form.submit()'>
+                                    <p><?php echo $row["todoDescription"]?></p>
+                                </form>
+                            </td>
+
+                                
+                            <td>
+                                <a name="edit" href="index.php?edit=<?php echo $row['id']?>" class="btn btn-primary">Edit</a>
+                                <a name="delete" href="index.php?delete=<?php echo $row['id']?>" class="btn btn-danger">Delete</a>
+                            </td>
                         </tr>
-                    </thead>
-        <?php
-            while ($row = $result->fetch_assoc()):?>
-                <tr>
-                   <!-- if task done, than the checkbox is checked -->
-                   <!-- if item is not done than it doesn't show as checked -->
-                    <td>
-                        <form method="POST" action="process.php">
-                            <input type="hidden" name="id" value="<?php echo $id; ?>">
-                            <input href="index.php?as=checked&row=<?php echo $row['id']; ?>" type="checkbox" value="1" name="checked" class="mr-2" <?php echo $row['checked'] ? 'checked': ''?> onchange='this.form.submit()'><?php echo $row["todoDescription"]?></td>
-                        </form>
-                    <td>
-                        <a name="edit" href="index.php?edit=<?php echo $row['id']?>" class="btn btn-primary">Edit</a>
-                        <a name="delete" href="index.php?delete=<?php echo $row['id']?>" class="btn btn-danger">Delete</a>
-                    </td>
-                </tr>
-                
-                
+                <?php endwhile; ?>
 
-            <?php endwhile; ?>
+                        </table>
 
-                </table>
 
+                    </div>
+            </div>
+
+            <div class="done">
+            <?php
+                    $mysqli = new mysqli("mysql-server-80", "root", "root_password", "todolist") or die(mysqli_error($mysqli));
+                    $result = $mysqli->query("SELECT * FROM todolist WHERE checked = 1") or die($mysqli->error);
+                ?>
+                    <div class="row">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                            
+                                <th>Done</th>
+                                <th colspan="2">Action</th>
+                                </tr>
+                            </thead>
+                <?php
+                    while ($row = $result->fetch_assoc()):?>
+                        <tr>
+                            <td>
+                                <form method="POST" action="process.php">
+                                    <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
+                                    <input type="hidden" name="checked" value="0">
+                                    <input href="index.php?checked=<?php echo $row['id'] ?>" type="checkbox" value="1" name="checked" class="mr-2" <?php echo $row['checked'] ? 'checked': ''?> onchange='this.form.submit()'>
+                                    <p><?php echo $row["todoDescription"]?></p>
+                                </form>
+                            </td>
+
+                                
+                            <td>
+                                
+                                <a name="delete" href="index.php?delete=<?php echo $row['id']?>" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                <?php endwhile; ?>
+
+                        </table>
+
+
+                    </div>
 
             </div>
 

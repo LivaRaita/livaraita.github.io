@@ -1,3 +1,12 @@
 /* .checked {
   text-decoration: overline;
 } */
+
+p {
+  display: inline;
+}
+
+input:checked ~ p {
+  color: gray;
+  text-decoration: line-through;
+}
