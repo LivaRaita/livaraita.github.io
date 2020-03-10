@@ -10,3 +10,13 @@ input:checked ~ p {
   color: gray;
   text-decoration: line-through;
 }
+
+.handle {
+  margin-right: 8px;
+  cursor: grab;
+  color: grey;
+}
+
+.handle:active {
+  cursor: grabbing;
+}
