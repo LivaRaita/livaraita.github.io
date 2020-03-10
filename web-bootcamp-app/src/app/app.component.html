@@ -7,6 +7,14 @@
   </tr>
 </table>
 
+<table>
+  <tr *ngFor="let row of users">
+    <td>{{ row.id }}</td>
+    <td>{{ row.email }}</td>
+    <td>{{ row.name }}</td>
+  </tr>
+</table>
+
 <h1 *ngIf="show">
   Show this after 5 sec
 </h1>
@@ -14,5 +22,13 @@
 <button [ngClass]="{ 'color-green': btn_class_green }" (click)="toggleClass()">
   Toggle class
 </button>
+
+<button (click)="getData()">Get user data</button>
+
+<button (click)="openPopup()">Open Popup</button>
+
+<app-popup #mainPopup></app-popup>
+
+<app-gallery #gallery></app-gallery>
 
 <router-outlet></router-outlet>

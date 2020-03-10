@@ -1,4 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { Sport } from "../models/sports.model";
+import { Users } from "../models/users.models";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "app-root",
@@ -6,15 +9,17 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
+  @ViewChild("mainPopup") greatPopup;
   title = "web-bootcamp-app";
   name = "Liva";
   show = false;
   btn_class_green = false;
 
-  sports = [
+  sports: Sport[] = [
     {
       id: 1,
-      name: "hockey"
+      name: "hockey",
+      test: 1
     },
     {
       id: 2,
@@ -24,7 +29,9 @@ export class AppComponent implements OnInit {
       id: 3,
       name: "basketball"
     }
-  ];
+  ].map(row => new Sport(row));
+
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
     setTimeout(() => {
@@ -37,5 +44,28 @@ export class AppComponent implements OnInit {
   }
   toggleClass() {
     this.btn_class_green = !this.btn_class_green;
+  }
+
+  users: Users[];
+  hasUserData = false;
+  getData() {
+    if (!this.hasUserData) {
+      this.http
+        .get("https://reqres.in/api/users?page")
+        .toPromise()
+        .then(
+          (response: any) => {
+            console.log(response.data);
+            this.users = response.data.map(row => new Users(row));
+            console.log(this.users);
+          },
+          rejection => {}
+        );
+      this.hasUserData = true;
+    }
+  }
+
+  openPopup() {
+    this.greatPopup.showPopup = true;
   }
 }

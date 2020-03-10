@@ -1,0 +1,23 @@
+.popup-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.popup-wrapper .popup-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 50%;
+  height: 300px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  text-align: center;
+}
