@@ -68,4 +68,9 @@ export class AppComponent implements OnInit {
   openPopup() {
     this.greatPopup.showPopup = true;
   }
+
+  toggleListAccess() {
+    localStorage.canAccessList =
+      localStorage.canAccessList === "true" ? false : true;
+  }
 }
