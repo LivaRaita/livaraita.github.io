@@ -2,13 +2,62 @@
   text-decoration: overline;
 } */
 
+body {
+  font-family: "Inter";
+  padding: 76px 24px;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #0e0e11;
+  margin-bottom: 8px;
+}
+
+h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #575767;
+}
 p {
   display: inline;
 }
 
+input {
+  color: #b9b9be;
+}
+
 input:checked ~ p {
-  color: gray;
+  color: #b9b9be;
   text-decoration: line-through;
+}
+
+th {
+  color: #575767;
+}
+
+tr {
+  background-color: white;
+}
+
+.table td {
+  border: none;
+}
+
+.table thead th {
+  font-weight: 700;
+  border: none;
+}
+
+.todo table td p {
+  font-weight: 500;
+  color: #575767;
+}
+
+.container {
+  margin-left: 24px;
+  margin-right: 24px;
+  padding: 0;
 }
 
 .handle {
@@ -19,4 +68,10 @@ input:checked ~ p {
 
 .handle:active {
   cursor: grabbing;
+}
+
+.button-groups {
+  float: right;
+  padding-right: 24px;
+  margin-right: 24px;
 }

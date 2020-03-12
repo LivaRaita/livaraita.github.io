@@ -11,6 +11,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Todos</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter:500,600,700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/521291c984.js" crossorigin="anonymous"></script>
     <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -20,11 +22,21 @@
   integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
   crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/521291c984.js" crossorigin="anonymous"></script>
+    
   
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+    <h1 id="date">Date goes here</h1>
+    <div>
+        <?php
+            $mysqli = new mysqli("mysql-server-80", "root", "root_password", "todolist") or die(mysqli_error($mysqli));
+            $completed = $mysqli->query("SELECT COUNT(CASE checked when 1 then 1 else null end) FROM todolist") or die($mysqli->error);
+            $incomplete= $mysqli->query("SELECT COUNT(CASE checked when 0 then 1 else null end) FROM todolist") or die($mysqli->error);
+        ?>
+    </div>
+    <h3><span><?php echo $incomplete->fetch_row()[0] ?></span> incomplete, <span><?php echo $completed->fetch_row()[0]?></span> completed</h3>
+    
     <?php
         if(isset($_SESSION["message"])):?>
 
@@ -37,7 +49,6 @@
             ?>
         </div>
         <?php endif ?>
-
 
     <div class="container">
         <div class="row">
@@ -55,30 +66,29 @@
                     <button name="submit" type="submit" value="submit">Add</button>
                 <?php endif; ?>
                 </div>
-                
             </form>
-
-            </div>
+        </div>
+        
 
             <div class="todo">
 
                 <?php
                     $mysqli = new mysqli("mysql-server-80", "root", "root_password", "todolist") or die(mysqli_error($mysqli));
-                    $result = $mysqli->query("SELECT * FROM todolist WHERE checked = 0") or die($mysqli->error);
+                    $result = $mysqli->query("SELECT * FROM todolist WHERE checked = 0 ORDER BY order_id ASC, date DESC") or die($mysqli->error);
                 ?>
                     <div class="row">
                         <table class="table">
                             <thead>
                                 <tr>
                             
-                                <th>My Todos</th>
-                                <th colspan="2">Action</th>
+                                <th>Incomplete</th>
+                                <th colspan="2"></th>
                                 </tr>
                             </thead>
                             <tbody id="sortable">
                 <?php
                     while ($row = $result->fetch_assoc()):?>
-                        <tr data-order="">
+                        <tr data-row-id="<?php echo $row['id'] ?>" class="todo-item" data-order="1">
                             <td>
                                 
                                 <form method="POST" action="process.php">
@@ -91,7 +101,7 @@
                             </td>
 
                                 
-                            <td>
+                            <td class="button-groups">
                                 <a name="edit" href="index.php?edit=<?php echo $row['id']?>" class="btn btn-primary">Edit</a>
                                 <a name="delete" href="index.php?delete=<?php echo $row['id']?>" class="btn btn-danger">Delete</a>
                             </td>
@@ -114,8 +124,8 @@
                             <thead>
                                 <tr>
                             
-                                <th>Done</th>
-                                <th colspan="2">Action</th>
+                                <th>Completed</th>
+                                <th colspan="2"></th>
                                 </tr>
                             </thead>
                 <?php
@@ -131,7 +141,7 @@
                             </td>
 
                                 
-                            <td>
+                            <td class="button-groups">
                                 
                                 <a name="delete" href="index.php?delete=<?php echo $row['id']?>" class="btn btn-danger">Delete</a>
                             </td>

@@ -57,18 +57,28 @@ if(isset($_POST["update"])) {
 
 
 
-
-// foreach(array("checked") as $checked) 
 if(isset($_POST["checked"]))
 {
     $id = $_POST["id"];
     $checked = $_POST["checked"];
 
     // if(isset($_POST["checked"]) && $_POST["checked"] == 1) {
-    $mysqli->query("UPDATE todolist SET checked='$checked' WHERE id=$id") or die($mysqli->error());
+    $mysqli->query("UPDATE todolist SET checked='$checked', order_id=-1 WHERE id=$id") or die($mysqli->error());
 
     header("location: index.php");
-// }
+
+}
+
+
+if(isset($_POST["orderData"])) {
+
+    foreach ($_POST["orderData"] as $value) {
+        $id = $value["rowId"];
+        $order_id = $value["orderId"];
+        $mysqli->query("UPDATE todolist SET order_id='$order_id' WHERE id=$id") or die($mysqli->error());
+
+    }
+
 }
 
 
