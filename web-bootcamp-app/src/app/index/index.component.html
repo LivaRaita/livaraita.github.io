@@ -1,11 +1,16 @@
 <div>
-  <input [(ngModel)]="user.name" />
+  <input [(ngModel)]="user.name" [formControl]="controls.name" />
 
   The value in the input is: {{ user.name }}
 </div>
 <div>
-  <input type="checkbox" [(ngModel)]="user.isActive" />
+  <input
+    type="checkbox"
+    [(ngModel)]="user.isActive"
+    [formControl]="controls.isActive"
+  />
 
   Is active? {{ user.isActive }}
 </div>
-<button>Login</button>
+
+<button [disabled]="{{!form.valid}}">Login</button>
