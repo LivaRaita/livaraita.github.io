@@ -1,5 +1,3 @@
-// var now = dateFormat(new Date(), "dddd, mmmm dS, yyyy, h:MM:ss TT");
-// $("h1").html(now);
 const monthNames = [
   "January",
   "February",
@@ -43,7 +41,32 @@ window.onload = function() {
   updateOrder();
 
   $("#sortable").sortable({
-    update: updateOrder
+    update: updateOrder,
+    activate: function(event, ui) {
+      $(ui.item).css({
+        "box-shadow": "0px 2px 8px rgba(0, 0, 0, 0.25)",
+        "border-radius": "4px"
+      });
+      $(ui.item)
+        .find(".button-groups")
+        .css("visibility", "hidden");
+    },
+    deactivate: function(event, ui) {
+      $(ui.item).css("box-shadow", "none");
+    }
   });
   $("#sortable").disableSelection();
 };
+
+$("tr").hover(
+  function() {
+    $(this)
+      .find(".button-groups")
+      .css("visibility", "visible");
+  },
+  function() {
+    $(this)
+      .find(".button-groups")
+      .css("visibility", "hidden");
+  }
+);

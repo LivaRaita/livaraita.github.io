@@ -1,7 +1,5 @@
 <?php
-    
     require_once("process.php");
-  
 ?>
 
 
@@ -27,6 +25,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+    <div class="container">
     <h1 id="date">Date goes here</h1>
     <div>
         <?php
@@ -40,32 +39,31 @@
     <?php
         if(isset($_SESSION["message"])):?>
 
-        <div class="alert alert-<?=$_SESSION['msg_type']?>">
+        <div class="alert alert-<?=$_SESSION['msg_type']?> fade-in-out">
             
             <?php
-                echo $_SESSION["message"];
+                echo $_SESSION["message"]; 
                 unset($_SESSION["message"]);
-                
             ?>
         </div>
-        <?php endif ?>
+    <?php endif ?>
 
-    <div class="container">
-        <div class="row">
-            <form method="POST" action="process.php">
+    
+        <div>
+            <form method="POST" action="process.php" id="task-input-wrapper" class="form-inline form-group form-row">
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
-                <div class="form-group">
-                    <input name="todoDescription" type="text" class="form-control" value="<?php echo $description; ?>" placeholder="Write a task...">
-                </div>
-                <div class="form-group">
+                <!-- <div > -->
+                <input name="todoDescription" type="text" class="form-control form-control-lg task-input" value="<?php echo $description; ?>" placeholder="Write a task...">
+                <!-- </div> -->
+                <!-- <div class="form-group"> -->
                 <?php
                     if($update == true):
                 ?>
-                    <button name="update" type="submit" value="submit" class="btn btn-info">Update</button>
+                    <button name="update" type="submit" value="submit" class="btn-submit">Update</button>
                 <?php else: ?>
-                    <button name="submit" type="submit" value="submit">Add</button>
+                    <button name="submit" type="submit" value="submit" class="btn-submit">Add</button>
                 <?php endif; ?>
-                </div>
+                <!-- </div> -->
             </form>
         </div>
         
@@ -82,28 +80,31 @@
                                 <tr>
                             
                                 <th>Incomplete</th>
-                                <th colspan="2"></th>
+                               
                                 </tr>
                             </thead>
                             <tbody id="sortable">
                 <?php
                     while ($row = $result->fetch_assoc()):?>
-                        <tr data-row-id="<?php echo $row['id'] ?>" class="todo-item" data-order="1">
+                        <tr data-row-id="<?php echo $row['id'] ?>" class="todo-item" data-order="" >
                             <td>
                                 
                                 <form method="POST" action="process.php">
                                     <span class="handle"><i class="fas fa-grip-lines"></i></span>
                                     <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
                                     <input type="hidden" name="checked" value="0">
-                                    <input href="index.php?checked=<?php echo $row['id'] ?>" type="checkbox" value="1" name="checked" class="mr-2" <?php echo $row['checked'] ? 'checked': ''?> onchange='this.form.submit()'>
+                                    <label class="custom-checkbox">
+                                        <input href="index.php?checked=<?php echo $row['id'] ?>" type="checkbox" value="1" name="checked" class="mr-2" <?php echo $row['checked'] ? 'checked': ''?> onchange='this.form.submit()'>
+                                     </label>
                                     <p><?php echo $row["todoDescription"]?></p>
                                 </form>
-                            </td>
+                          
 
                                 
-                            <td class="button-groups">
-                                <a name="edit" href="index.php?edit=<?php echo $row['id']?>" class="btn btn-primary">Edit</a>
-                                <a name="delete" href="index.php?delete=<?php echo $row['id']?>" class="btn btn-danger">Delete</a>
+                            <div class="button-groups">
+                                <a name="edit" href="index.php?edit=<?php echo $row['id']?>" class="btn "><i class="fas fa-pen"></i></a>
+                                <a name="delete" href="index.php?delete=<?php echo $row['id']?>" class="btn"><i class="fas fa-trash-alt"></i></a>
+                            </div>
                             </td>
                         </tr>
                 <?php endwhile; ?>
@@ -125,25 +126,28 @@
                                 <tr>
                             
                                 <th>Completed</th>
-                                <th colspan="2"></th>
+                              
                                 </tr>
                             </thead>
                 <?php
                     while ($row = $result->fetch_assoc()):?>
                         <tr>
                             <td>
-                                <form method="POST" action="process.php">
+                                <form method="POST" action="process.php" >
                                     <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
                                     <input type="hidden" name="checked" value="0">
-                                    <input href="index.php?checked=<?php echo $row['id'] ?>" type="checkbox" value="1" name="checked" class="mr-2" <?php echo $row['checked'] ? 'checked': ''?> onchange='this.form.submit()'>
+                                    <label class="custom-checkbox"><i class="fas fa-check"></i>
+                                        <input href="index.php?checked=<?php echo $row['id'] ?>" type="checkbox" value="1" name="checked" class="mr-2" <?php echo $row['checked'] ? 'checked': ''?> onchange='this.form.submit()'>
+                                    </label>
                                     <p><?php echo $row["todoDescription"]?></p>
                                 </form>
-                            </td>
+                            
 
                                 
-                            <td class="button-groups">
-                                
-                                <a name="delete" href="index.php?delete=<?php echo $row['id']?>" class="btn btn-danger">Delete</a>
+                                <div class="button-groups">
+                                    
+                                    <a name="delete" href="index.php?delete=<?php echo $row['id']?>" class="btn"><i class="fas fa-trash-alt"></i></a>
+                                </div>
                             </td>
                         </tr>
                 <?php endwhile; ?>
