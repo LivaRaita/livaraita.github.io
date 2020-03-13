@@ -102,7 +102,7 @@
 
                                 
                             <div class="button-groups">
-                                <a name="edit" href="index.php?edit=<?php echo $row['id']?>" class="btn "><i class="fas fa-pen"></i></a>
+                                <a name="edit" href="index.php?edit=<?php echo $row['id']?>" class="btn"><i class="fas fa-pen"></i></a>
                                 <a name="delete" href="index.php?delete=<?php echo $row['id']?>" class="btn"><i class="fas fa-trash-alt"></i></a>
                             </div>
                             </td>
