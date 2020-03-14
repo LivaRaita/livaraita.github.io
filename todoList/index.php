@@ -44,13 +44,14 @@
         <!-- *** Status messages after task addition, edition, and deletion *** -->
         <?php
             if(isset($_SESSION["message"])):?>
-
-            <div class="alert alert-<?=$_SESSION['msg_type']?> fade-in-out">
-                
-                <?php
-                    echo $_SESSION["message"]; 
-                    unset($_SESSION["message"]);
-                ?>
+            <div id="alert-container">
+                <div class="alert alert-<?=$_SESSION['msg_type']?> fade-in-out">
+                    
+                    <?php
+                        echo $_SESSION["message"]; 
+                        unset($_SESSION["message"]);
+                    ?>
+                </div>
             </div>
         <?php endif ?>
 
@@ -58,7 +59,7 @@
         <div>
             <form method="POST" action="process.php" id="task-input-wrapper" class="form-inline form-group form-row">
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
-                <input name="todoDescription" type="text" class="form-control form-control-lg task-input" value="<?php echo $description; ?>" placeholder="Write a task...">
+                <input name="todoDescription" type="text" class="form-control form-control-lg task-input" value="<?php echo $description; ?>" placeholder="Write a task..." autocomplete="off" required>
                 
                 <?php
                     if($update == true):

@@ -29,10 +29,6 @@ table {
   width: 100%;
 }
 
-th {
-  color: #575767;
-}
-
 tr {
   display: flex;
   justify-content: space-between;
@@ -46,23 +42,10 @@ label {
   margin-bottom: 0;
 }
 
-table td {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  border: none;
-}
-
 td form {
   display: flex;
   align-items: center;
   text-align: center;
-}
-
-table thead th {
-  font-weight: 700;
-  border: none;
 }
 
 tr input {
@@ -150,13 +133,6 @@ tr input {
   color: white;
 }
 
-.alert {
-  position: absolute;
-  top: 8px;
-  left: 32px;
-  right: 32px;
-}
-
 .fade-in-out {
   -webkit-animation: fadeinout 4s linear forwards;
   animation: fadeinout 4s linear forwards;
@@ -187,6 +163,11 @@ tr input {
   }
 }
 
+.alert {
+  max-width: 500px;
+  text-align: center;
+}
+
 .btn {
   display: flex;
   align-items: center;
@@ -203,9 +184,34 @@ tr input {
   text-decoration: line-through;
 }
 
+.table td {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border: none;
+}
+
+.table thead th {
+  color: #575767;
+  font-weight: 700;
+  border: none;
+}
+
 .todo table td p {
   font-weight: 500;
   color: #575767;
+}
+
+#alert-container {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #task-input-wrapper {
