@@ -25,9 +25,8 @@ input {
   color: #b9b9be;
 }
 
-.done p {
-  color: #b9b9be;
-  text-decoration: line-through;
+table {
+  width: 100%;
 }
 
 th {
@@ -42,8 +41,17 @@ tr {
   width: 100%;
 }
 
-table {
+label {
+  margin-right: 16px;
+  margin-bottom: 0;
+}
+
+table td {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
+  border: none;
 }
 
 td form {
@@ -52,22 +60,13 @@ td form {
   text-align: center;
 }
 
-.table td {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  border: none;
-}
-
-.table thead th {
+table thead th {
   font-weight: 700;
   border: none;
 }
 
-.todo table td p {
-  font-weight: 500;
-  color: #575767;
+tr input {
+  display: none;
 }
 
 .container {
@@ -95,6 +94,10 @@ td form {
   color: #575767;
 }
 
+.fa-check {
+  color: #575767;
+}
+
 .button-groups {
   text-align: right;
   display: flex;
@@ -103,14 +106,7 @@ td form {
   visibility: hidden;
 }
 
-.ui-sortable-helper {
-  border: red;
-}
-
 .custom-checkbox {
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
   text-align: center;
   min-width: 24px;
   max-width: 24px;
@@ -131,40 +127,6 @@ td form {
 .custom-checkbox:hover {
   background: linear-gradient(180deg, #f9f9f9 0%, #efefef 100%);
   border: 2px solid #575767;
-}
-
-label {
-  margin-right: 16px;
-  margin-bottom: 0;
-}
-
-tr input {
-  display: none;
-}
-
-.fa-check {
-  color: #575767;
-  /* line-height: 24px; */
-}
-
-#task-input-wrapper {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 80px;
-  grid-column-gap: 8px;
-  padding-top: 16px;
-}
-
-#task-input-wrapper input {
-  width: 100%;
-}
-
-#task-input-wrapper input:hover {
-  border: 1px solid #575767;
-}
-
-#task-input-wrapper input:focus {
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
 }
 
 .form-row {
@@ -234,4 +196,34 @@ tr input {
   min-width: 40px;
   max-width: 40px;
   padding: 0;
+}
+
+.done p {
+  color: #b9b9be;
+  text-decoration: line-through;
+}
+
+.todo table td p {
+  font-weight: 500;
+  color: #575767;
+}
+
+#task-input-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 80px;
+  grid-column-gap: 8px;
+  padding-top: 16px;
+}
+
+#task-input-wrapper input {
+  width: 100%;
+}
+
+#task-input-wrapper input:hover {
+  border: 1px solid #575767;
+}
+
+#task-input-wrapper input:focus {
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
 }

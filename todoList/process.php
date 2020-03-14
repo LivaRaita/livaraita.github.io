@@ -9,9 +9,10 @@ $update = false;
 $description = "";
 $checked = 0;
 
+// ### Task submission and status message ###
+
 if(isset($_POST["submit"])) {
     $description = $_POST["todoDescription"];
-    //later I'll have to add a listener for an invisible input field which can be changed (by dragging) and sent to database
 
     $mysqli->query("INSERT INTO todolist (todoDescription, date) VALUES ('$description', now())") or die($mysqli->error);
 
@@ -21,6 +22,8 @@ if(isset($_POST["submit"])) {
     header("location: index.php");
 }
 
+// ### Task deletion ###
+
 if(isset($_GET["delete"])) {
     $id = $_GET["delete"];
     $mysqli->query("DELETE FROM todolist WHERE id=$id") or die($mysqli->error());
@@ -28,8 +31,11 @@ if(isset($_GET["delete"])) {
     $_SESSION["message"] = "A task has been deleted";
     $_SESSION["msg_type"] = "danger";
 
+    session_write_close();
     header("location: index.php");
 }
+
+// ### Task edition: this retrieves the task from DB ###
 
 if(isset($_GET["edit"])) {
     $id = $_GET["edit"];
@@ -41,6 +47,8 @@ if(isset($_GET["edit"])) {
         $description = $row["todoDescription"];
     }
 }
+
+// ### Task edition: this updates the task in DB and informs which message should be displayed ###
 
 if(isset($_POST["update"])) {
     $id = $_POST["id"];
@@ -56,19 +64,20 @@ if(isset($_POST["update"])) {
 }
 
 
+// ### This function posts to DB that the task is 'checked' (done) ###
 
 if(isset($_POST["checked"]))
 {
     $id = $_POST["id"];
     $checked = $_POST["checked"];
 
-    // if(isset($_POST["checked"]) && $_POST["checked"] == 1) {
-    $mysqli->query("UPDATE todolist SET checked='$checked', order_id=-1 WHERE id=$id") or die($mysqli->error());
+    $mysqli->query("UPDATE todolist SET checked='$checked' WHERE id=$id") or die($mysqli->error());
 
     header("location: index.php");
 
 }
 
+// ### This function takes the array made by javascript function and updates the order id (index in the array) in the DB according to the values
 
 if(isset($_POST["orderData"])) {
 
@@ -78,7 +87,6 @@ if(isset($_POST["orderData"])) {
         $mysqli->query("UPDATE todolist SET order_id='$order_id' WHERE id=$id") or die($mysqli->error());
 
     }
-
 }
 
 

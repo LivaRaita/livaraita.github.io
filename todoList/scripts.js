@@ -20,6 +20,8 @@ let year = today.getFullYear();
 
 $("h1").html(month + " " + date + ", " + year);
 
+// ### This function creates an array where a task's order id (the index value in the array) and row id is saved and passes to process.php ###
+
 function updateOrder() {
   var data = [];
 
@@ -36,6 +38,8 @@ function updateOrder() {
     url: "process.php"
   });
 }
+
+// ### This is a jQuery UI magic: sortable function ###
 
 window.onload = function() {
   updateOrder();
