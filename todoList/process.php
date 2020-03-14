@@ -11,7 +11,8 @@ $checked = 0;
 
 // ### Task submission and status message ###
 
-if(isset($_POST["submit"])) {
+if(isset($_POST["submit"])) 
+{
     $description = $_POST["todoDescription"];
 
     $mysqli->query("INSERT INTO todolist (todoDescription, date) VALUES ('$description', now())") or die($mysqli->error);
@@ -24,7 +25,8 @@ if(isset($_POST["submit"])) {
 
 // ### Task deletion ###
 
-if(isset($_GET["delete"])) {
+if(isset($_GET["delete"])) 
+{
     $id = $_GET["delete"];
     $mysqli->query("DELETE FROM todolist WHERE id=$id") or die($mysqli->error());
 
@@ -35,22 +37,25 @@ if(isset($_GET["delete"])) {
     header("location: index.php");
 }
 
-// ### Task edition: this retrieves the task from DB ###
+// ### Task editing: this retrieves the task from DB ###
 
-if(isset($_GET["edit"])) {
+if(isset($_GET["edit"])) 
+{
     $id = $_GET["edit"];
     $update = true;
     $result = $mysqli->query("SELECT todoDescription FROM todolist WHERE id=$id") or die($mysqli->error());
  
-    if ($result->num_rows) {
+    if ($result->num_rows) 
+    {
         $row = $result->fetch_array();
         $description = $row["todoDescription"];
     }
 }
 
-// ### Task edition: this updates the task in DB and informs which message should be displayed ###
+// ### Task editing: this updates the task in DB and informs which message should be displayed ###
 
-if(isset($_POST["update"])) {
+if(isset($_POST["update"])) 
+{
     $id = $_POST["id"];
     $description = $_POST["todoDescription"];
 
@@ -58,7 +63,6 @@ if(isset($_POST["update"])) {
 
     $_SESSION["message"] = "Task has been updated";
     $_SESSION["msg_type"] = "warning";
-
 
     header("location: index.php");
 }
@@ -74,18 +78,17 @@ if(isset($_POST["checked"]))
     $mysqli->query("UPDATE todolist SET checked='$checked' WHERE id=$id") or die($mysqli->error());
 
     header("location: index.php");
-
 }
 
 // ### This function takes the array made by javascript function and updates the order id (index in the array) in the DB according to the values
 
-if(isset($_POST["orderData"])) {
-
-    foreach ($_POST["orderData"] as $value) {
+if(isset($_POST["orderData"])) 
+{
+    foreach ($_POST["orderData"] as $value) 
+    {
         $id = $value["rowId"];
         $order_id = $value["orderId"];
         $mysqli->query("UPDATE todolist SET order_id='$order_id' WHERE id=$id") or die($mysqli->error());
-
     }
 }
 
