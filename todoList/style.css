@@ -1,6 +1,6 @@
 body {
   font-family: "Inter";
-  padding: 76px;
+  padding: 76px 16px;
 }
 
 h1 {
@@ -87,6 +87,12 @@ tr input {
   align-items: center;
   flex-wrap: nowrap;
   visibility: hidden;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .button-groups {
+    visibility: visible;
+  }
 }
 
 .custom-checkbox {
